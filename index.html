@@ -1,0 +1,4707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Vijayalakshmi R - Data Analyst. Building SQL queries, Excel workflows, and interactive Tableau/Power BI dashboards that turn raw data into decisions.">
+  <title>Vijayalakshmi R | Data Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <style>
+    /* ============================================================
+   DESIGN TOKENS — Clean / Premium / Minimal
+============================================================ */
+    :root {
+      --bg-00: #f7f8fb;
+      --bg-01: #ffffff;
+      --bg-02: #eef1f6;
+      --card: #ffffff;
+      --card-hov: #ffffff;
+      --border: rgba(17, 24, 39, 0.08);
+      --border-s: rgba(79, 70, 229, 0.35);
+
+      /* palette */
+      --v: #4f46e5;
+      /* indigo primary */
+      --vl: #6366f1;
+      --i: #4338ca;
+      --il: #6366f1;
+      --c: #0d9488;
+      /* teal secondary */
+      --cl: #14b8a6;
+      --p: #db2777;
+      --pl: #ec4899;
+      --g: #16a34a;
+      --o: #d97706;
+
+      --txt: #111827;
+      --txt-2: #4b5563;
+      --txt-3: #9ca3af;
+
+      --gv: linear-gradient(135deg, #4f46e5, #4338ca);
+      --gc: linear-gradient(135deg, #0d9488, #4f46e5);
+      --gp: linear-gradient(135deg, #4f46e5, #0d9488);
+      --go: linear-gradient(135deg, #d97706, #0d9488);
+      --gall: linear-gradient(135deg, #4f46e5 0%, #4338ca 40%, #0d9488 100%);
+
+      --glow-v: 0 8px 24px rgba(79, 70, 229, .18);
+      --glow-c: 0 8px 24px rgba(13, 148, 136, .18);
+      --glow-p: 0 8px 24px rgba(219, 39, 119, .15);
+
+      --ease: cubic-bezier(.4, 0, .2, 1);
+      --ease-bounce: cubic-bezier(.34, 1.2, .64, 1);
+      --r: 14px;
+      --r2: 10px;
+      --r3: 20px;
+
+      --ff-disp: 'Plus Jakarta Sans', sans-serif;
+      --ff-body: 'Inter', sans-serif;
+      --ff-mono: 'JetBrains Mono', monospace;
+
+      --shadow-sm: 0 1px 2px rgba(17, 24, 39, .04);
+      --shadow-md: 0 4px 16px rgba(17, 24, 39, .06);
+      --shadow-lg: 0 16px 40px rgba(17, 24, 39, .09);
+    }
+
+    /* Dark mode (toggle target) */
+    body:not(.light-mode) {
+      --bg-00: #0b0e14;
+      --bg-01: #10141d;
+      --bg-02: #141826;
+      --card: #12161f;
+      --card-hov: #161b26;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-s: rgba(129, 140, 248, 0.4);
+      --txt: #f3f4f6;
+      --txt-2: #9ca3af;
+      --txt-3: #6b7280;
+      --v: #818cf8;
+      --vl: #a5b4fc;
+      --i: #818cf8;
+      --il: #a5b4fc;
+      --c: #2dd4bf;
+      --cl: #5eead4;
+      --p: #f472b6;
+      --pl: #f9a8d4;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, .35);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, .45);
+    }
+
+    /* ============================================================
+   RESET + BASE
+============================================================ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg-00);
+      color: var(--txt);
+      overflow-x: hidden;
+      transition: background .4s, color .4s;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    ::selection {
+      background: rgba(79, 70, 229, .18);
+    }
+
+    /* ============================================================
+   CURSOR — disabled (default OS cursor for a professional feel)
+============================================================ */
+    #cursor,
+    #cursor-ring {
+      display: none;
+    }
+
+    /* ============================================================
+   BACKGROUND CANVASES — hidden for a clean, minimal surface
+============================================================ */
+    #video-bg,
+    #hero-bg-canvas {
+      display: none;
+    }
+
+    #video-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 12% 8%, rgba(79, 70, 229, .05) 0%, transparent 45%),
+        radial-gradient(ellipse at 88% 12%, rgba(13, 148, 136, .045) 0%, transparent 45%);
+    }
+
+    /* ============================================================
+   LAYOUT
+============================================================ */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    section {
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    /* ============================================================
+   NAVBAR
+============================================================ */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 0 24px;
+      transition: all .3s var(--ease);
+    }
+
+    #navbar.scrolled {
+      background: rgba(255, 255, 255, .82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    body:not(.light-mode) #navbar.scrolled {
+      background: rgba(11, 14, 20, .82);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--ff-disp);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--txt);
+      letter-spacing: -.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .84rem;
+      font-weight: 500;
+      color: var(--txt-2);
+      padding: 8px 13px;
+      border-radius: 8px;
+      transition: all .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--txt);
+      background: var(--bg-02);
+    }
+
+    .nav-links a.active {
+      color: var(--v);
+      font-weight: 600;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 2px;
+      border-radius: 99px;
+      font-family: var(--ff-body);
+      transition: all .3s;
+    }
+
+    .toggle-track {
+      position: relative;
+      width: 46px;
+      height: 24px;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      transition: background .35s, border-color .35s;
+      flex-shrink: 0;
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      background: var(--v);
+      border-radius: 50%;
+      transition: transform .35s var(--ease-bounce);
+      z-index: 2;
+    }
+
+    body.light-mode .toggle-thumb {
+      transform: translateX(0);
+    }
+
+    body:not(.light-mode) .toggle-thumb {
+      transform: translateX(22px);
+    }
+
+    .toggle-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 9px;
+      z-index: 1;
+      transition: opacity .25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      color: var(--txt-3);
+    }
+
+    .toggle-icon-moon {
+      left: 3px;
+    }
+
+    .toggle-icon-sun {
+      right: 3px;
+    }
+
+    .toggle-label {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--txt-3);
+      min-width: 30px;
+      user-select: none;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--txt-2);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, .98);
+      backdrop-filter: blur(16px);
+      padding: 16px;
+      z-index: 999;
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      gap: 2px;
+      box-shadow: var(--shadow-md);
+    }
+
+    body:not(.light-mode) .mobile-menu {
+      background: rgba(11, 14, 20, .98);
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      color: var(--txt-2);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: .92rem;
+      font-weight: 500;
+      transition: all .2s;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--v);
+      background: var(--bg-02);
+    }
+
+    /* ============================================================
+   CINEMATIC INTRO OVERLAY — simplified, light, quick
+============================================================ */
+    #intro-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200000;
+      background: var(--bg-00);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: opacity .5s ease;
+    }
+
+    #intro-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #intro-canvas {
+      display: none;
+    }
+
+    #intro-skip {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      color: var(--txt-2);
+      font-family: var(--ff-body);
+      font-size: .8rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all .2s;
+      z-index: 10;
+    }
+
+    #intro-skip:hover {
+      background: var(--card-hov);
+      color: var(--txt);
+    }
+
+    #intro-stage {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      width: 100%;
+      max-width: 800px;
+      padding: 0 24px;
+    }
+
+    .intro-phase {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .5s;
+    }
+
+    .intro-phase.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #intro-logo-ring {
+      display: none;
+    }
+
+    #intro-logo-text {
+      font-family: var(--ff-disp);
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 800;
+      color: var(--v);
+      animation: ilogoscale .7s var(--ease-bounce) forwards;
+      transform: scale(.6);
+      opacity: 0;
+    }
+
+    @keyframes ilogoscale {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    #intro-greeting {
+      font-family: var(--ff-mono);
+      font-size: clamp(.75rem, 2vw, .85rem);
+      color: var(--c);
+      letter-spacing: .08em;
+      margin-bottom: 12px;
+      animation: islideup .6s ease forwards;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    #intro-name {
+      font-family: var(--ff-disp);
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 800;
+      color: var(--txt);
+      letter-spacing: -.03em;
+      line-height: 1;
+      margin-bottom: 16px;
+      animation: islideup .6s .15s ease forwards;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    #intro-title-line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .intro-title-word {
+      font-family: var(--ff-disp);
+      font-size: clamp(.95rem, 2.5vw, 1.3rem);
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .4s, transform .4s var(--ease);
+      color: var(--txt-2);
+    }
+
+    .intro-title-word.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes islideup {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #intro-stats-label,
+    #intro-skills-label,
+    #intro-cta-sub {
+      font-family: var(--ff-mono);
+      font-size: .72rem;
+      color: var(--txt-3);
+      letter-spacing: .1em;
+      margin-bottom: 26px;
+      animation: islideup .5s ease forwards;
+      opacity: 0;
+    }
+
+    #intro-stats-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: islideup .5s .1s ease forwards;
+      opacity: 0;
+    }
+
+    .intro-stat-card {
+      padding: 0 28px;
+      text-align: center;
+    }
+
+    .intro-stat-num {
+      font-family: var(--ff-disp);
+      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      font-weight: 800;
+      color: var(--v);
+      line-height: 1;
+    }
+
+    .intro-stat-lbl {
+      color: var(--txt-3);
+      font-size: .72rem;
+      margin-top: 6px;
+    }
+
+    .intro-stat-divider {
+      width: 1px;
+      height: 44px;
+      background: var(--border);
+    }
+
+    #intro-skills-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .intro-skill-pill {
+      padding: 9px 20px;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      font-family: var(--ff-disp);
+      font-size: clamp(.82rem, 2vw, .92rem);
+      font-weight: 600;
+      background: var(--bg-02);
+      color: var(--txt-2);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .4s, transform .4s var(--ease);
+    }
+
+    .intro-skill-pill.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #intro-cta-main {
+      font-family: var(--ff-disp);
+      font-size: clamp(1.5rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--txt);
+      letter-spacing: -.02em;
+      animation: islideup .5s .15s ease forwards;
+      opacity: 0;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+
+    #intro-cta-main:hover {
+      opacity: .7;
+    }
+
+    #intro-progress-wrap {
+      width: 160px;
+      height: 2px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+      margin: 22px auto 0;
+      animation: ifadein .5s .3s ease forwards;
+      opacity: 0;
+    }
+
+    #intro-progress-bar {
+      height: 100%;
+      width: 0;
+      background: var(--v);
+      border-radius: 99px;
+      transition: width 2.4s linear;
+    }
+
+    @keyframes ifadein {
+      to {
+        opacity: 1;
+      }
+    }
+
+    #intro-wipe {
+      position: absolute;
+      inset: 0;
+      background: var(--bg-00);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform .5s var(--ease);
+      z-index: 20;
+    }
+
+    #intro-wipe.wiping {
+      transform: scaleY(1);
+    }
+
+    /* ============================================================
+   HERO
+============================================================ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 110px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(ellipse 60% 50% at 78% 30%, rgba(79, 70, 229, .06) 0%, transparent 60%);
+    }
+
+    #hero-welcome-flash {
+      display: none;
+    }
+
+    .hero-grid {
+      max-width: 1180px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-left>* {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: hslideup .6s var(--ease) forwards;
+    }
+
+    .hero-left .hero-badge {
+      animation-delay: .05s;
+    }
+
+    .hero-left .hero-name {
+      animation-delay: .1s;
+    }
+
+    .hero-left .hero-roles {
+      animation-delay: .15s;
+    }
+
+    .hero-left .hero-typewriter {
+      animation-delay: .2s;
+    }
+
+    .hero-left .hero-desc {
+      animation-delay: .25s;
+    }
+
+    .hero-left .hero-btns {
+      animation-delay: .3s;
+    }
+
+    .hero-left .hero-socials {
+      animation-delay: .35s;
+    }
+
+    .hero-left .hero-counters {
+      animation-delay: .4s;
+    }
+
+    .hero-visual {
+      opacity: 0;
+      animation: hfadescale .7s var(--ease) .3s forwards;
+    }
+
+    body.intro-done .hero-left>* {
+      animation-delay: .05s !important;
+    }
+
+    body.intro-done .hero-visual {
+      animation-delay: .15s !important;
+    }
+
+    @keyframes hslideup {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes hfadescale {
+      from {
+        opacity: 0;
+        transform: scale(.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--v);
+      margin-bottom: 20px;
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--g);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, .35);
+      }
+
+      50% {
+        box-shadow: 0 0 0 5px rgba(22, 163, 74, 0);
+      }
+    }
+
+    .hero-name {
+      font-family: var(--ff-disp);
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -.03em;
+      color: var(--txt);
+      margin-bottom: 16px;
+    }
+
+    .hero-roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .role-chip {
+      font-family: var(--ff-body);
+      font-size: .78rem;
+      font-weight: 600;
+      padding: 5px 13px;
+      border-radius: 99px;
+      border: 1px solid;
+      transition: all .25s;
+    }
+
+    .role-chip-1 {
+      border-color: rgba(79, 70, 229, .3);
+      color: var(--v);
+      background: rgba(79, 70, 229, .06);
+    }
+
+    .role-chip-2 {
+      border-color: rgba(79, 70, 229, .3);
+      color: var(--v);
+      background: rgba(79, 70, 229, .06);
+    }
+
+    .role-chip-3 {
+      border-color: rgba(13, 148, 136, .3);
+      color: var(--c);
+      background: rgba(13, 148, 136, .06);
+    }
+
+    .role-chip-4 {
+      border-color: rgba(22, 163, 74, .3);
+      color: var(--g);
+      background: rgba(22, 163, 74, .06);
+    }
+
+    .hero-typewriter {
+      font-family: var(--ff-mono);
+      font-size: clamp(.85rem, 1.5vw, 1rem);
+      color: var(--txt-2);
+      margin-bottom: 22px;
+      min-height: 1.5em;
+    }
+
+    .hero-typewriter span {
+      color: var(--c);
+    }
+
+    .cursor-blink {
+      animation: cblink .8s infinite;
+      color: var(--v);
+    }
+
+    @keyframes cblink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .hero-desc {
+      color: var(--txt-2);
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 490px;
+      margin-bottom: 30px;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 34px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 22px;
+      background: var(--v);
+      color: #fff;
+      font-weight: 600;
+      font-size: .88rem;
+      border-radius: var(--r2);
+      border: none;
+      transition: all .25s;
+    }
+
+    .btn-primary:hover {
+      box-shadow: var(--glow-v);
+      transform: translateY(-2px);
+      background: var(--i);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 22px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--txt);
+      font-weight: 600;
+      font-size: .88rem;
+      border-radius: var(--r2);
+      transition: all .25s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--v);
+      color: var(--v);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 22px;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      color: var(--txt-2);
+      font-weight: 600;
+      font-size: .88rem;
+      border-radius: var(--r2);
+      transition: all .25s;
+    }
+
+    .btn-ghost:hover {
+      background: var(--card-hov);
+      color: var(--txt);
+      transform: translateY(-2px);
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 34px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--txt-2);
+      font-size: .9rem;
+      transition: all .25s;
+    }
+
+    .social-link:hover {
+      transform: translateY(-3px);
+      border-color: var(--v);
+      color: var(--v);
+    }
+
+    /* Hero stat counters row */
+    .hero-counters {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      background: var(--card);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .h-counter {
+      padding: 16px 12px;
+      text-align: center;
+      position: relative;
+    }
+
+    .h-counter:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .h-counter-val {
+      font-family: var(--ff-disp);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--v);
+      line-height: 1;
+    }
+
+    .h-counter-lbl {
+      color: var(--txt-3);
+      font-size: .68rem;
+      margin-top: 4px;
+    }
+
+    /* Hero visual */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-img-wrap {
+      position: relative;
+      width: 280px;
+      height: 280px;
+    }
+
+    .hero-img-ring {
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+    }
+
+    .hero-img-ring2 {
+      display: none;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--gv);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-disp);
+      font-size: 4rem;
+      font-weight: 800;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--glow-v);
+    }
+
+    .hero-float-card {
+      position: absolute;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      padding: 9px 13px;
+      font-size: .78rem;
+      white-space: nowrap;
+      box-shadow: var(--shadow-md);
+      font-weight: 600;
+      color: var(--txt-2);
+    }
+
+    .hero-float-card.card-1 {
+      top: 5px;
+      right: -55px;
+      color: var(--c);
+    }
+
+    .hero-float-card.card-2 {
+      bottom: 25px;
+      left: -55px;
+      color: var(--v);
+    }
+
+    .hero-float-card.card-3 {
+      top: 50%;
+      left: -60px;
+      color: var(--p);
+      transform: translateY(-50%);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      color: var(--txt-3);
+      font-size: .72rem;
+      z-index: 3;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 36px;
+      background: var(--border);
+    }
+
+    /* ============================================================
+   SECTION COMMON TOKENS
+============================================================ */
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: .76rem;
+      font-weight: 600;
+      color: var(--v);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--ff-disp);
+      font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      color: var(--txt);
+    }
+
+    .section-subtitle {
+      color: var(--txt-2);
+      font-size: .98rem;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    .tg1,
+    .tg2,
+    .tg3,
+    .tg4,
+    .tgall {
+      color: var(--v);
+    }
+
+    /* Glass card base -> clean card */
+    .glass-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      transition: all .3s var(--ease);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .glass-card:hover {
+      border-color: var(--border-s);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ============================================================
+   ABOUT
+============================================================ */
+    #about {
+      padding: 100px 24px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative;
+      aspect-ratio: 1;
+      max-width: 360px;
+    }
+
+    .about-img-bg {
+      display: none;
+    }
+
+    .about-img-inner {
+      position: relative;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 18px;
+      text-align: center;
+      transition: all .25s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-card:hover {
+      border-color: var(--border-s);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .stat-num {
+      font-family: var(--ff-disp);
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--v);
+      line-height: 1;
+    }
+
+    .stat-label {
+      color: var(--txt-3);
+      font-size: .72rem;
+      margin-top: 4px;
+    }
+
+    .about-content p {
+      color: var(--txt-2);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 22px;
+    }
+
+    .tag-badge {
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 5px 13px;
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--txt-2);
+      transition: all .2s;
+    }
+
+    .tag-badge:hover {
+      border-color: var(--v);
+      color: var(--v);
+    }
+
+    /* ============================================================
+   SKILLS
+============================================================ */
+    #skills {
+      padding: 100px 24px;
+    }
+
+    .skills-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+      justify-content: center;
+    }
+
+    .skill-tab {
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-size: .82rem;
+      font-weight: 600;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      color: var(--txt-2);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .skill-tab.active,
+    .skill-tab:hover {
+      background: var(--v);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .skills-pane {
+      display: none;
+    }
+
+    .skills-pane.active {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .skill-category {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 26px;
+      transition: all .3s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .skill-category:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-s);
+      transform: translateY(-3px);
+    }
+
+    .skill-cat-icon {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+
+    .skill-cat-title {
+      font-family: var(--ff-disp);
+      font-size: .95rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      color: var(--txt);
+    }
+
+    .skill-item {
+      margin-bottom: 14px;
+    }
+
+    .skill-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 7px;
+    }
+
+    .skill-name {
+      font-size: .84rem;
+      color: var(--txt-2);
+    }
+
+    .skill-pct {
+      font-family: var(--ff-mono);
+      font-size: .68rem;
+      font-weight: 600;
+      padding: 2px 9px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      color: var(--txt-3);
+    }
+
+    .skill-pct.tier-adv {
+      color: var(--g);
+      border-color: rgba(22, 163, 74, .3);
+      background: rgba(22, 163, 74, .06);
+    }
+
+    .skill-pct.tier-prof {
+      color: var(--c);
+      border-color: rgba(13, 148, 136, .3);
+      background: rgba(13, 148, 136, .06);
+    }
+
+    .skill-pct.tier-grow {
+      color: var(--o);
+      border-color: rgba(217, 119, 6, .3);
+      background: rgba(217, 119, 6, .06);
+    }
+
+    .skill-bar-wrap {
+      height: 5px;
+      background: var(--bg-02);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .skill-bar {
+      height: 100%;
+      border-radius: 99px;
+      width: 0;
+      transition: width 1.1s var(--ease);
+    }
+
+    .bar-v {
+      background: var(--v);
+    }
+
+    .bar-i {
+      background: var(--v);
+    }
+
+    .bar-c {
+      background: var(--c);
+    }
+
+    .bar-g {
+      background: var(--g);
+    }
+
+    .bar-o {
+      background: var(--o);
+    }
+
+    .bar-p {
+      background: var(--p);
+    }
+
+    /* ============================================================
+   PROJECTS
+============================================================ */
+    #projects {
+      padding: 100px 24px;
+    }
+
+    .projects-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .filter-btn {
+      padding: 7px 15px;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      color: var(--txt-2);
+      font-size: .8rem;
+      font-weight: 600;
+      transition: all .2s;
+      cursor: pointer;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--v);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-wrap i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--txt-3);
+      font-size: .82rem;
+    }
+
+    .project-search {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 8px 14px 8px 34px;
+      color: var(--txt);
+      font-size: .84rem;
+      font-family: var(--ff-body);
+      width: 210px;
+      outline: none;
+      transition: all .25s;
+    }
+
+    .project-search:focus {
+      border-color: var(--v);
+    }
+
+    .project-search::placeholder {
+      color: var(--txt-3);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      transition: all .3s var(--ease);
+      position: relative;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-s);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-thumb {
+      height: 230px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.2rem;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      transition: background-color .3s var(--ease);
+    }
+
+    .project-thumb.thumb-dark {
+      background: #000000;
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      padding: 10px 14px;
+      position: relative;
+      z-index: 0;
+      transition: transform .4s var(--ease);
+    }
+
+    .project-card:hover .project-thumb img {
+      transform: scale(1.05);
+    }
+
+    .pt1,
+    .pt2,
+    .pt3,
+    .pt4,
+    .pt5,
+    .pt6 {
+      background: var(--bg-02);
+    }
+
+    .project-body {
+      padding: 18px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+
+    .project-tag {
+      padding: 2px 9px;
+      border-radius: 99px;
+      font-size: .66rem;
+      font-weight: 600;
+    }
+
+    .tag-py {
+      background: rgba(79, 70, 229, .08);
+      color: var(--v);
+      border: 1px solid rgba(79, 70, 229, .18);
+    }
+
+    .tag-sql {
+      background: rgba(67, 56, 202, .08);
+      color: var(--i);
+      border: 1px solid rgba(67, 56, 202, .18);
+    }
+
+    .tag-bi {
+      background: rgba(13, 148, 136, .08);
+      color: var(--c);
+      border: 1px solid rgba(13, 148, 136, .18);
+    }
+
+    .tag-aws {
+      background: rgba(217, 119, 6, .08);
+      color: var(--o);
+      border: 1px solid rgba(217, 119, 6, .18);
+    }
+
+    .tag-spark {
+      background: rgba(219, 39, 119, .08);
+      color: var(--p);
+      border: 1px solid rgba(219, 39, 119, .18);
+    }
+
+    .tag-ml {
+      background: rgba(22, 163, 74, .08);
+      color: var(--g);
+      border: 1px solid rgba(22, 163, 74, .18);
+    }
+
+    .tag-cloud {
+      background: rgba(22, 163, 74, .08);
+      color: var(--g);
+      border: 1px solid rgba(22, 163, 74, .18);
+    }
+
+    .tag-excel {
+      background: rgba(22, 163, 74, .08);
+      color: var(--g);
+      border: 1px solid rgba(22, 163, 74, .18);
+    }
+
+    .tag-pbi {
+      background: rgba(245, 158, 11, .1);
+      color: #d97706;
+      border: 1px solid rgba(245, 158, 11, .25);
+    }
+
+    .tag-tab {
+      background: rgba(13, 148, 136, .1);
+      color: #0d9488;
+      border: 1px solid rgba(13, 148, 136, .25);
+    }
+
+    .tag-dax {
+      background: rgba(219, 39, 119, .1);
+      color: #db2777;
+      border: 1px solid rgba(219, 39, 119, .25);
+    }
+
+    .tag-pivot {
+      background: rgba(37, 99, 235, .1);
+      color: #2563eb;
+      border: 1px solid rgba(37, 99, 235, .25);
+    }
+
+    .view-all-projects-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .view-all-projects-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 34px;
+      background: var(--v);
+      color: #ffffff;
+      border: 1px solid transparent;
+      border-radius: 99px;
+      font-family: var(--ff-disp);
+      font-size: .92rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(79, 70, 229, .25);
+      transition: all .3s var(--ease);
+    }
+
+    .view-all-projects-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(79, 70, 229, .38);
+      background: var(--vl);
+    }
+
+    .view-all-projects-btn .btn-icon {
+      transition: transform .3s var(--ease);
+      font-size: .85rem;
+    }
+
+    .view-all-projects-btn.expanded .btn-icon {
+      transform: rotate(180deg);
+    }
+
+
+    .project-title {
+      font-family: var(--ff-disp);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 7px;
+      color: var(--txt);
+    }
+
+    .project-desc {
+      color: var(--txt-2);
+      font-size: .83rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .project-btns {
+      display: flex;
+      gap: 7px;
+    }
+
+    .project-btn {
+      flex: 1;
+      padding: 8px;
+      border-radius: var(--r2);
+      font-size: .75rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all .2s;
+      border: 1px solid var(--border);
+      color: var(--txt-2);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .project-btn:hover {
+      color: var(--v);
+      border-color: var(--v);
+    }
+
+    .project-btn.prim {
+      background: var(--v);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .project-btn.prim:hover {
+      box-shadow: var(--glow-v);
+      color: #fff;
+    }
+
+    /* ============================================================
+   DATA PIPELINE VISUALIZATION
+============================================================ */
+    #pipeline {
+      padding: 100px 24px;
+    }
+
+    .pipeline-wrap {
+      margin-top: 48px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      padding: 48px 40px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pipeline-wrap::before {
+      display: none;
+    }
+
+    .pipeline-title {
+      font-family: var(--ff-disp);
+      font-size: .85rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--txt-2);
+      margin-bottom: 40px;
+    }
+
+    .pipeline-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    .pipe-node {
+      text-align: center;
+      padding: 0 12px;
+    }
+
+    .pipe-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--r);
+      margin: 0 auto 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      border: 1px solid;
+      position: relative;
+      overflow: hidden;
+      transition: all .25s;
+      cursor: default;
+    }
+
+    .pipe-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .pi-src {
+      border-color: rgba(79, 70, 229, .25);
+      color: var(--v);
+      background: rgba(79, 70, 229, .06);
+    }
+
+    .pi-kafka {
+      border-color: rgba(219, 39, 119, .25);
+      color: var(--p);
+      background: rgba(219, 39, 119, .06);
+    }
+
+    .pi-spark {
+      border-color: rgba(217, 119, 6, .25);
+      color: var(--o);
+      background: rgba(217, 119, 6, .06);
+    }
+
+    .pi-s3 {
+      border-color: rgba(217, 119, 6, .25);
+      color: var(--o);
+      background: rgba(217, 119, 6, .06);
+    }
+
+    .pi-snow {
+      border-color: rgba(13, 148, 136, .25);
+      color: var(--c);
+      background: rgba(13, 148, 136, .06);
+    }
+
+    .pi-dbt {
+      border-color: rgba(22, 163, 74, .25);
+      color: var(--g);
+      background: rgba(22, 163, 74, .06);
+    }
+
+    .pi-bi {
+      border-color: rgba(79, 70, 229, .25);
+      color: var(--v);
+      background: rgba(79, 70, 229, .06);
+    }
+
+    .pipe-label {
+      font-family: var(--ff-mono);
+      font-size: .65rem;
+      color: var(--txt-3);
+    }
+
+    .pipe-arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+      color: var(--txt-3);
+      font-size: .9rem;
+      position: relative;
+    }
+
+    /* ============================================================
+   EXPERIENCE TIMELINE
+============================================================ */
+    #timeline {
+      padding: 100px 24px;
+    }
+
+    .timeline-wrap {
+      position: relative;
+      max-width: 760px;
+      margin: 56px auto 0;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      margin-bottom: 44px;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-content {
+      flex: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 20px 22px;
+      transition: all .25s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .timeline-content:hover {
+      border-color: var(--border-s);
+      box-shadow: var(--shadow-md);
+    }
+
+    .timeline-year {
+      font-family: var(--ff-mono);
+      font-size: .7rem;
+      color: var(--c);
+      margin-bottom: 5px;
+    }
+
+    .timeline-event {
+      font-family: var(--ff-disp);
+      font-size: .97rem;
+      font-weight: 700;
+      color: var(--txt);
+    }
+
+    .timeline-role {
+      color: var(--v);
+      font-size: .78rem;
+      font-weight: 600;
+      margin: 3px 0;
+    }
+
+    .timeline-desc {
+      color: var(--txt-3);
+      font-size: .8rem;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+      background: var(--v);
+      border-radius: 50%;
+      border: 3px solid var(--bg-00);
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-spacer {
+      flex: 1;
+    }
+
+    /* ============================================================
+   CERTIFICATIONS
+============================================================ */
+    #certifications {
+      padding: 100px 24px;
+    }
+
+    .cert-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+    }
+
+    .cert-search {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 8px 14px 8px 34px;
+      color: var(--txt);
+      font-size: .84rem;
+      font-family: var(--ff-body);
+      width: 210px;
+      outline: none;
+      transition: all .25s;
+    }
+
+    .cert-search:focus {
+      border-color: var(--v);
+    }
+
+    .cert-search::placeholder {
+      color: var(--txt-3);
+    }
+
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .cert-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      transition: all .3s var(--ease);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cert-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-s);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .cert-thumb {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.6rem;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      background: var(--bg-02);
+    }
+
+    .cert-thumb::after {
+      content: 'View Certificate';
+      position: absolute;
+      inset: 0;
+      background: rgba(17, 24, 39, .65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+      font-weight: 600;
+      color: #fff;
+      opacity: 0;
+      transition: opacity .25s;
+    }
+
+    .cert-card:hover .cert-thumb::after {
+      opacity: 1;
+    }
+
+    .ct1,
+    .ct2,
+    .ct3,
+    .ct4,
+    .ct5 {
+      background: var(--bg-02);
+    }
+
+    .cert-body {
+      padding: 18px;
+    }
+
+    .cert-org {
+      font-size: .68rem;
+      font-weight: 600;
+      color: var(--c);
+      margin-bottom: 5px;
+    }
+
+    .cert-title {
+      font-family: var(--ff-disp);
+      font-size: .92rem;
+      font-weight: 700;
+      margin-bottom: 7px;
+      line-height: 1.3;
+      color: var(--txt);
+    }
+
+    .cert-meta {
+      color: var(--txt-3);
+      font-size: .72rem;
+      margin-bottom: 7px;
+    }
+
+    .cert-id {
+      font-family: var(--ff-mono);
+      font-size: .66rem;
+      color: var(--txt-3);
+      margin-bottom: 10px;
+    }
+
+    .cert-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-bottom: 14px;
+    }
+
+    .cert-skill-tag {
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 2px 8px;
+      font-size: .64rem;
+      color: var(--txt-3);
+    }
+
+    .cert-btns {
+      display: flex;
+      gap: 5px;
+    }
+
+    .cert-btn {
+      flex: 1;
+      padding: 7px 8px;
+      border-radius: var(--r2);
+      font-size: .7rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all .2s;
+      border: 1px solid var(--border);
+      color: var(--txt-2);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .cert-btn:hover {
+      color: var(--v);
+      border-color: var(--v);
+    }
+
+    .cert-btn.cprim {
+      background: var(--v);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    /* Cert Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, .7);
+      backdrop-filter: blur(6px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .cert-modal {
+      background: var(--bg-01);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      animation: modalIn .25s var(--ease);
+      box-shadow: var(--shadow-lg);
+    }
+
+    @keyframes modalIn {
+      from {
+        transform: scale(.95);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 34px;
+      height: 34px;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--txt-2);
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .2s;
+      z-index: 1;
+    }
+
+    .modal-close:hover {
+      color: var(--p);
+      border-color: var(--p);
+    }
+
+    .modal-cert-display {
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      border-radius: var(--r3) var(--r3) 0 0;
+      background: var(--bg-02);
+    }
+
+    .modal-cert-info {
+      padding: 24px;
+    }
+
+    .modal-cert-title {
+      font-family: var(--ff-disp);
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 5px;
+      color: var(--txt);
+    }
+
+    .modal-cert-org {
+      color: var(--c);
+      font-size: .88rem;
+      margin-bottom: 14px;
+    }
+
+    .modal-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .modal-nav {
+      display: flex;
+      gap: 7px;
+    }
+
+    .modal-nav-btn {
+      padding: 7px 14px;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      color: var(--txt-2);
+      font-size: .78rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all .2s;
+    }
+
+    .modal-nav-btn:hover {
+      color: var(--v);
+      border-color: var(--v);
+    }
+
+    .modal-zoom {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .zoom-btn {
+      width: 30px;
+      height: 30px;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      color: var(--txt-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .2s;
+      font-size: .8rem;
+    }
+
+    .zoom-btn:hover {
+      color: var(--v);
+      border-color: var(--v);
+    }
+
+    /* ============================================================
+   DASHBOARDS
+============================================================ */
+    .dashboard-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      overflow: hidden;
+      transition: all .3s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-s);
+      box-shadow: var(--shadow-md);
+    }
+
+    .dashboard-header {
+      padding: 18px 22px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dashboard-title {
+      font-family: var(--ff-disp);
+      font-size: .97rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+      color: var(--txt);
+    }
+
+    .dashboard-sub {
+      color: var(--txt-3);
+      font-size: .74rem;
+    }
+
+    .dashboard-body {
+      padding: 18px 22px;
+    }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .kpi-card {
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      padding: 10px;
+      text-align: center;
+    }
+
+    .kpi-val {
+      font-family: var(--ff-disp);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--txt);
+    }
+
+    .kpi-lbl {
+      color: var(--txt-3);
+      font-size: .64rem;
+      margin-top: 2px;
+    }
+
+    .kpi-chg {
+      font-size: .68rem;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .up {
+      color: var(--g);
+    }
+
+    .down {
+      color: var(--p);
+    }
+
+    .chart-area {
+      position: relative;
+      width: 100%;
+      height: 130px;
+    }
+
+    /* ============================================================
+   GITHUB
+============================================================ */
+    #github {
+      padding: 100px 24px;
+    }
+
+    .github-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 36px;
+      margin-top: 48px;
+    }
+
+    .github-profile-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      padding: 28px 22px;
+      text-align: center;
+      height: fit-content;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .github-avatar {
+      width: 68px;
+      height: 68px;
+      background: var(--v);
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: #fff;
+    }
+
+    .github-name {
+      font-family: var(--ff-disp);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+      color: var(--txt);
+    }
+
+    .github-handle {
+      color: var(--txt-3);
+      font-size: .82rem;
+      margin-bottom: 18px;
+      font-family: var(--ff-mono);
+    }
+
+    .github-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .gh-stat {
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      padding: 10px;
+      text-align: center;
+    }
+
+    .gh-stat-val {
+      font-family: var(--ff-disp);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--v);
+    }
+
+    .gh-stat-lbl {
+      color: var(--txt-3);
+      font-size: .66rem;
+    }
+
+    .github-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      width: 100%;
+      padding: 10px;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      color: var(--txt-2);
+      font-size: .82rem;
+      font-weight: 600;
+      transition: all .2s;
+    }
+
+    .github-btn:hover {
+      border-color: var(--v);
+      color: var(--v);
+    }
+
+    .contrib-grid {
+      display: grid;
+      grid-template-columns: repeat(52, 1fr);
+      gap: 2px;
+      margin-bottom: 14px;
+    }
+
+    .contrib-cell {
+      aspect-ratio: 1;
+      border-radius: 2px;
+      background: var(--bg-02);
+    }
+
+    .contrib-cell.lvl1 {
+      background: rgba(13, 148, 136, .25);
+    }
+
+    .contrib-cell.lvl2 {
+      background: rgba(13, 148, 136, .45);
+    }
+
+    .contrib-cell.lvl3 {
+      background: rgba(13, 148, 136, .68);
+    }
+
+    .contrib-cell.lvl4 {
+      background: rgba(13, 148, 136, .9);
+    }
+
+    .repos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .repo-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 16px;
+      transition: all .25s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .repo-card:hover {
+      border-color: var(--border-s);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .repo-name {
+      font-family: var(--ff-mono);
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--v);
+      margin-bottom: 5px;
+    }
+
+    .repo-desc {
+      color: var(--txt-3);
+      font-size: .74rem;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .repo-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .68rem;
+      color: var(--txt-3);
+    }
+
+    .repo-lang {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .lang-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    /* ============================================================
+   STATISTICS SECTION
+============================================================ */
+    #statistics {
+      padding: 100px 24px;
+    }
+
+    .stats-big-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      margin-top: 48px;
+    }
+
+    .big-stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 28px 20px;
+      text-align: center;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .big-stat-card:hover {
+      border-color: var(--border-s);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .big-stat-icon {
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+    }
+
+    .big-stat-num {
+      font-family: var(--ff-disp);
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--v);
+      line-height: 1;
+    }
+
+    .big-stat-label {
+      color: var(--txt-3);
+      font-size: .72rem;
+      margin-top: 6px;
+    }
+
+    /* ============================================================
+   CONTACT
+============================================================ */
+    #contact {
+      padding: 100px 24px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 56px;
+      margin-top: 48px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .95rem;
+      color: var(--v);
+      flex-shrink: 0;
+    }
+
+    .contact-info-label {
+      font-size: .7rem;
+      color: var(--txt-3);
+      margin-bottom: 2px;
+    }
+
+    .contact-info-val {
+      color: var(--txt);
+      font-size: .88rem;
+    }
+
+    .contact-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: .76rem;
+      font-weight: 600;
+      color: var(--txt-2);
+      margin-bottom: 7px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background: var(--bg-01);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      padding: 11px 14px;
+      color: var(--txt);
+      font-family: var(--ff-body);
+      font-size: .88rem;
+      outline: none;
+      transition: all .2s;
+      resize: none;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--v);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, .1);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--txt-3);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 13px;
+      background: var(--v);
+      border: none;
+      border-radius: var(--r2);
+      color: #fff;
+      font-family: var(--ff-body);
+      font-size: .92rem;
+      font-weight: 600;
+      transition: all .25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .form-submit:hover {
+      box-shadow: var(--glow-v);
+      transform: translateY(-2px);
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 18px;
+      color: var(--g);
+      font-weight: 600;
+      animation: fadeIn .4s;
+    }
+
+    .form-error {
+      display: none;
+      text-align: center;
+      padding: 12px;
+      color: var(--p);
+      font-size: .82rem;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ============================================================
+   FOOTER
+============================================================ */
+    #footer {
+      border-top: 1px solid var(--border);
+      padding: 56px 24px 28px;
+      position: relative;
+      z-index: 2;
+      background: var(--bg-01);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 36px;
+      margin-bottom: 36px;
+    }
+
+    .footer-brand .nav-logo {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+    }
+
+    .footer-brand p {
+      color: var(--txt-3);
+      font-size: .82rem;
+      line-height: 1.6;
+      max-width: 250px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .footer-social {
+      width: 34px;
+      height: 34px;
+      background: var(--bg-02);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--txt-3);
+      font-size: .82rem;
+      transition: all .2s;
+    }
+
+    .footer-social:hover {
+      color: var(--v);
+      border-color: var(--v);
+    }
+
+    .footer-col h4 {
+      font-family: var(--ff-disp);
+      font-size: .82rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--txt);
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 9px;
+    }
+
+    .footer-col ul li a {
+      color: var(--txt-3);
+      font-size: .8rem;
+      transition: all .2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--v);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-copy {
+      color: var(--txt-3);
+      font-size: .76rem;
+    }
+
+    .back-top {
+      width: 38px;
+      height: 38px;
+      background: var(--v);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: .82rem;
+      transition: all .25s;
+      cursor: pointer;
+    }
+
+    .back-top:hover {
+      box-shadow: var(--glow-v);
+      transform: translateY(-3px);
+    }
+
+    /* ============================================================
+   MISC OVERRIDES / FOCUS STATES
+============================================================ */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--v);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .form-input,
+    .form-textarea {
+      background: var(--bg-01);
+    }
+
+    #footer {
+      background: var(--bg-01);
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ============================================================
+   RESPONSIVE
+============================================================ */
+    @media(max-width:1100px) {
+      .stats-big-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .skills-pane.active {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:1024px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .pipeline-flow {
+        gap: 0;
+      }
+    }
+
+    @media(max-width:768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-btns {
+        justify-content: center;
+      }
+
+      .hero-socials {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        display: none;
+      }
+
+      .hero-scroll {
+        display: none;
+      }
+
+      .hero-counters {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-roles {
+        justify-content: center;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-pane.active {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .certs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .github-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .repos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-big-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .timeline-line {
+        left: 18px;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        flex-direction: row;
+        gap: 18px;
+      }
+
+      .timeline-dot {
+        order: -1;
+        flex-shrink: 0;
+      }
+
+      .timeline-spacer {
+        display: none;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .kpi-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .pipeline-flow {
+        flex-direction: column;
+      }
+
+      .pipe-arrow {
+        transform: rotate(90deg);
+      }
+    }
+
+    @media(max-width:480px) {
+      .projects-controls {
+        flex-direction: column;
+      }
+
+      .project-search {
+        width: 100%;
+      }
+
+      .cert-controls {
+        flex-direction: column;
+      }
+
+      .cert-search {
+        width: 100%;
+      }
+
+      .stats-big-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== CINEMATIC INTRO ===== -->
+  <div id="intro-overlay">
+    <canvas id="intro-canvas"></canvas>
+    <button id="intro-skip" onclick="skipIntro()">Skip <span>→</span></button>
+    <div id="intro-stage">
+      <div id="intro-phase-1" class="intro-phase">
+        <div id="intro-logo-ring"></div>
+        <div id="intro-logo-text">VR</div>
+      </div>
+      <div id="intro-phase-2" class="intro-phase">
+        <div id="intro-greeting">Hello, I'm</div>
+        <div id="intro-name">Vijayalakshmi R</div>
+        <div id="intro-title-line">
+          <span class="intro-title-word" style="color:#818cf8">Data Analyst</span>
+        </div>
+      </div>
+      <div id="intro-phase-3" class="intro-phase">
+        <div id="intro-stats-label">In numbers</div>
+        <div id="intro-stats-row">
+          <div class="intro-stat-card">
+            <div class="intro-stat-num" id="istat1">0</div>
+            <div class="intro-stat-lbl">Projects</div>
+          </div>
+          <div class="intro-stat-divider"></div>
+          <div class="intro-stat-card">
+            <div class="intro-stat-num" id="istat2">0</div>
+            <div class="intro-stat-lbl">Dashboards</div>
+          </div>
+          <div class="intro-stat-divider"></div>
+          <div class="intro-stat-card">
+            <div class="intro-stat-num" id="istat3">0</div>
+            <div class="intro-stat-lbl">Datasets</div>
+          </div>
+          <div class="intro-stat-divider"></div>
+          <div class="intro-stat-card">
+            <div class="intro-stat-num" id="istat4">0</div>
+            <div class="intro-stat-lbl">KPI Reports</div>
+          </div>
+        </div>
+      </div>
+      <div id="intro-phase-4" class="intro-phase">
+        <div id="intro-skills-label">Skilled in</div>
+        <div id="intro-skills-row">
+          <div class="intro-skill-pill" style="border-color:#818cf8;color:#818cf8">🐍 Python</div>
+          <div class="intro-skill-pill" style="border-color:#a78bfa;color:#a78bfa">🗄️ SQL</div>
+          <div class="intro-skill-pill" style="border-color:#67e8f9;color:#67e8f9">📋 Excel</div>
+          <div class="intro-skill-pill" style="border-color:#34d399;color:#34d399">📊 Tableau / Power BI</div>
+        </div>
+      </div>
+      <div id="intro-phase-5" class="intro-phase">
+        <div id="intro-cta-sub">Portfolio ready</div>
+        <div id="intro-cta-main">Let's Explore →</div>
+        <div id="intro-progress-wrap">
+          <div id="intro-progress-bar"></div>
+        </div>
+      </div>
+    </div>
+    <div id="intro-wipe"></div>
+  </div>
+
+  <!-- Custom cursor (disabled visually via CSS) -->
+  <div id="cursor" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Global animated background canvas (hidden via CSS for a clean surface) -->
+  <canvas id="video-bg" aria-hidden="true"></canvas>
+  <div id="video-overlay" aria-hidden="true"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">VR</a>.</a>
+      <ul class="nav-links" role="list">
+        <li><a href="#hero" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#pipeline">Pipeline</a></li>
+        <li><a href="#certifications">Certs</a></li>
+        <li><a href="#github">GitHub</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeBtn" role="switch" aria-checked="true" aria-label="Toggle theme">
+          <span class="toggle-track">
+            <span class="toggle-icon toggle-icon-moon"><i class="fas fa-moon"></i></span>
+            <span class="toggle-icon toggle-icon-sun"><i class="fas fa-sun"></i></span>
+            <span class="toggle-thumb"></span>
+          </span>
+          <span class="toggle-label" id="toggleLabel">Dark</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+    <a href="#hero">Home</a><a href="#about">About</a><a href="#skills">Skills</a>
+    <a href="#projects">Projects</a><a href="#pipeline">Pipeline</a>
+    <a href="#certifications">Certifications</a><a href="#github">GitHub</a><a href="#contact">Contact</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" aria-label="Hero section">
+    <canvas id="hero-bg-canvas" aria-hidden="true"></canvas>
+    <div id="hero-vignette" aria-hidden="true"></div>
+    <div id="hero-welcome-flash" aria-hidden="true">
+      <span id="hero-welcome-text">Welcome to My Portfolio</span>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-badge"><span class="dot"></span> Open to Opportunities</div>
+        <h1 class="hero-name">Vijayalakshmi R</h1>
+        <div class="hero-roles">
+          <span class="role-chip role-chip-1">Data Analyst</span>
+        </div>
+        <p class="hero-typewriter">I build <span id="typewriter"></span><span class="cursor-blink">|</span></p>
+        <p class="hero-desc">Turning raw data into SQL queries, clean spreadsheets, and interactive Tableau and Power BI
+          dashboards that turn numbers into decisions that matter.</p>
+        <div class="hero-btns">
+          <a href="pdf/Vijayalakshmi.pdf" download="Vijayalakshmi-Resume.pdf" class="btn-primary"><i
+              class="fas fa-download"></i> Download Resume</a>
+          <a href="#projects" class="btn-outline"><i class="fas fa-folder-open"></i> View Projects</a>
+          <a href="#contact" class="btn-ghost"><i class="fas fa-paper-plane"></i> Contact Me</a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://www.linkedin.com/in/vijayalakshmi0808/" class="social-link li" aria-label="LinkedIn"><i
+              class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/vijeelakshmi" class="social-link gh" aria-label="GitHub"><i
+              class="fab fa-github"></i></a>
+          <a href="https://public.tableau.com/app/profile/vijayalakshmi.r4042/vizzes" class="social-link tw"
+            aria-label="Tableau"><i class="fas fa-chart-bar"></i></a>
+          <a href="mailto:vijaya0835@gmail.com" class="social-link em" aria-label="Email"><i
+              class="fas fa-envelope"></i></a>
+        </div>
+        <div class="hero-counters">
+          <div class="h-counter">
+            <div class="h-counter-val" data-count="26">0</div>
+            <div class="h-counter-lbl">Projects</div>
+          </div>
+          <div class="h-counter">
+            <div class="h-counter-val" data-count="15">0</div>
+            <div class="h-counter-lbl">Datasets</div>
+          </div>
+          <div class="h-counter">
+            <div class="h-counter-val" data-count="12">0</div>
+            <div class="h-counter-lbl">Dashboards</div>
+          </div>
+          <div class="h-counter">
+            <div class="h-counter-val" data-count="8">0</div>
+            <div class="h-counter-lbl">KPI Reports</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-img-wrap">
+          <div class="hero-img-ring"></div>
+          <div class="hero-img-ring2"></div>
+          <div class="hero-img">VR</div>
+          <div class="hero-float-card card-1"><span>🗄️</span> SQL + Excel</div>
+          <div class="hero-float-card card-2"><span>🐍</span> Python + Pandas</div>
+          <div class="hero-float-card card-3"><span>📊</span> Tableau / Power BI</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="scroll-line"></div><span>Scroll</span>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" aria-label="About section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-side" data-aos="fade-right">
+          <div class="about-img-wrap">
+            <div class="about-img-bg"></div>
+            <div class="about-img-inner">🧑‍💻</div>
+          </div>
+          <div class="about-stats">
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
+              <div class="stat-num" data-count="26">0</div>
+              <div class="stat-label">Projects Done</div>
+            </div>
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="150">
+              <div class="stat-num" data-count="15">0</div>
+              <div class="stat-label">Datasets Cleaned</div>
+            </div>
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
+              <div class="stat-num" data-count="8">0</div>
+              <div class="stat-label">KPI Reports Delivered</div>
+            </div>
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="250">
+              <div class="stat-num" data-count="6">0</div>
+              <div class="stat-label">Interactive Dashboards</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-content" data-aos="fade-left">
+          <div class="section-tag"><i class="fas fa-user"></i> About Me</div>
+          <h2 class="section-title">Data-Driven <span class="tg1">Analyst</span></h2>
+          <p>I'm a <strong>Data Analyst</strong> who turns raw, messy data into clear business insight. I work
+            end-to-end — pulling and shaping data with SQL and Python, cleaning and modeling it in Excel, and presenting
+            it through interactive dashboards that stakeholders can actually act on.</p>
+          <p>My day-to-day toolkit centers on SQL for querying and analysis, Python (Pandas/NumPy) for data cleaning and
+            exploration, Excel for modeling and reporting, and Tableau or Power BI for building the dashboards that
+            surface trends, KPIs, and root causes.</p>
+          <p>I care about the full analytics workflow — from understanding a business question, to writing the query, to
+            designing a dashboard that answers it clearly and drives a decision.</p>
+          <div class="about-tags">
+            <span class="tag-badge">Python</span><span class="tag-badge">SQL</span><span
+              class="tag-badge">Tableau</span>
+            <span class="tag-badge">Power BI</span><span class="tag-badge">Excel</span><span
+              class="tag-badge">Pandas</span>
+            <span class="tag-badge">Data Cleaning</span><span class="tag-badge">Data Visualization</span><span
+              class="tag-badge">KPI Reporting</span>
+            <span class="tag-badge">Statistical Analysis</span><span class="tag-badge">Dashboard Design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" aria-label="Skills section">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:36px" data-aos="fade-up">
+        <div class="section-tag"><i class="fas fa-code"></i> Skills</div>
+        <h2 class="section-title">Technical <span class="tg2">Arsenal</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">The core toolkit I use every day to query, clean, analyze, and
+          visualize data.</p>
+      </div>
+
+      <div id="tab-analytics" class="skills-pane active" data-aos="fade-up">
+        <div class="skill-category">
+          <div class="skill-cat-icon">🗄️</div>
+          <div class="skill-cat-title">Query & Databases</div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">SQL (MySQL / SQL Server)</span><span
+                class="skill-pct tier-adv">Advanced</span></div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar bar-i" data-pct="92"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">Advanced SQL (CTEs, Windows)</span><span
+                class="skill-pct tier-prof">Proficient</span></div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar bar-i" data-pct="72"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">Data Cleaning & Wrangling</span><span
+                class="skill-pct tier-adv">Advanced</span></div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar bar-i" data-pct="92"></div>
+            </div>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-icon">📊</div>
+          <div class="skill-cat-title">BI & Visualization</div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">Tableau</span><span
+                class="skill-pct tier-prof">Proficient</span></div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar bar-v" data-pct="72"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">Power BI</span><span
+                class="skill-pct tier-prof">Proficient</span></div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar bar-v" data-pct="72"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">Dashboard Design & KPI Reporting</span><span
+                class="skill-pct tier-prof">Proficient</span></div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar bar-v" data-pct="72"></div>
+            </div>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-icon">📋</div>
+          <div class="skill-cat-title">Spreadsheets, Python & Stats</div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">Excel (Power Query, Pivot Tables)</span><span
+                class="skill-pct tier-adv">Advanced</span></div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar bar-g" data-pct="92"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">Python (Pandas / NumPy)</span><span
+                class="skill-pct tier-prof">Proficient</span></div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar bar-g" data-pct="72"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">Statistics & EDA</span><span
+                class="skill-pct tier-grow">Growing</span></div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar bar-g" data-pct="55"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" aria-label="Projects section">
+    <div class="container">
+      <div data-aos="fade-up" style="text-align:center">
+        <div class="section-tag"><i class="fas fa-folder"></i> Projects</div>
+        <h2 class="section-title">Featured <span class="tg3">Work</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">End-to-end data analytics projects with interactive dashboards
+          built in SQL, Python, Excel, Tableau, and Power BI.</p>
+      </div>
+      <div class="projects-controls" data-aos="fade-up">
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="powerbi">Power BI</button>
+          <button class="filter-btn" data-filter="tableau">Tableau</button>
+          <button class="filter-btn" data-filter="sql">SQL</button>
+          <button class="filter-btn" data-filter="excel">Excel</button>
+          <button class="filter-btn" data-filter="python">Python</button>
+        </div>
+        <div class="search-wrap">
+          <i class="fas fa-search"></i>
+          <input type="text" class="project-search" id="projectSearch" placeholder="Search projects…">
+        </div>
+      </div>
+      <div class="projects-grid" id="projectsGrid">
+
+        <div class="project-card" data-project-index="0" data-tags="analytics sql python tableau" data-aos="fade-up">
+          <div class="project-thumb pt1"><img src="images/Airport-Delay.png"
+              alt="Airport Flight Delay Analysis dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-sql">SQL</span><span
+                class="project-tag tag-py">Python</span><span class="project-tag tag-tab">Tableau</span></div>
+            <div class="project-title">Airport Flight Delay Analysis</div>
+            <div class="project-desc">End-to-end Airport Flight Delay Analysis using Python, SQL Server, and Tableau
+              with interactive dashboards to analyze airline performance, airport operations, delay trends, routes, and
+              delay causes.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Airport-Flight-Delay-Analysis"
+                target="_blank" rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://public.tableau.com/app/profile/vijayalakshmi.r4042/viz/AirportDelay_17851578366790/Overview"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-project-index="1" data-tags="analytics sql tableau python excel"
+          data-aos="fade-up" data-aos-delay="80">
+          <div class="project-thumb pt2"><img src="images/Real.png" alt="Real Estate Market Analysis dashboard preview"
+              loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-sql">SQL</span><span
+                class="project-tag tag-tab">Tableau</span><span class="project-tag tag-py">Python</span><span
+                class="project-tag tag-excel">Excel</span></div>
+            <div class="project-title">Real Estate Market Analysis</div>
+            <div class="project-desc">Real Estate Market Analysis dashboard built with Python, SQL, Tableau, and Excel —
+              covering revenue, property, geographic, and agent performance analysis, market growth tracking, property
+              status & sales trends, plus interactive filters and KPI cards.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Real-Estate-Market-Analysis"
+                target="_blank" rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://public.tableau.com/app/profile/vijayalakshmi.r4042/viz/RealEstateMarketAnalysis_17813457418620/Overview"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-project-index="2" data-tags="analytics tableau sql excel" data-aos="fade-up"
+          data-aos-delay="160">
+          <div class="project-thumb thumb-dark pt3"><img src="images/Uber.png" alt="Uber Analysis dashboard preview"
+              loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-tab">Tableau</span><span
+                class="project-tag tag-sql">SQL</span><span class="project-tag tag-excel">Excel</span></div>
+            <div class="project-title">Uber Analysis</div>
+            <div class="project-desc">An interactive Uber Analytics Dashboard built using Tableau, SQL, and Excel to
+              analyze ride demand, customer behavior, driver performance, location insights, payment trends, and
+              business KPIs through dynamic visualizations.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Uber-Analysis" target="_blank"
+                rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://public.tableau.com/views/UberAnalysis_17813608744680/Overview?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-project-index="3" data-tags="analytics tableau sql" data-aos="fade-up">
+          <div class="project-thumb pt4"><img src="images/Retail.png" alt="Retail Sales Analytics dashboard preview"
+              loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-tab">Tableau</span><span
+                class="project-tag tag-sql">SQL</span></div>
+            <div class="project-title">Retail Sales Analytics</div>
+            <div class="project-desc">An end-to-end Retail Sales Analytics project using SQL and Tableau featuring
+              interactive dashboards for Sales, Product, Customer, and Region analysis with actionable business
+              insights.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Retail-Sales-Dashboard" target="_blank"
+                rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://public.tableau.com/views/RetailSalesDashboard_17834068449450/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-project-index="4" data-tags="analytics tableau sql python excel"
+          data-aos="fade-up" data-aos-delay="80">
+          <div class="project-thumb pt5"><img src="images/Expense.png" alt="Expense Tracker Analysis dashboard preview"
+              loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-tab">Tableau</span><span
+                class="project-tag tag-sql">SQL</span><span class="project-tag tag-py">Python</span><span
+                class="project-tag tag-excel">Excel</span></div>
+            <div class="project-title">Expense Tracker Analysis</div>
+            <div class="project-desc">An end-to-end Expense Tracker Analytics Dashboard built with Python, SQL Server,
+              and Tableau to analyze personal financial transactions, spending habits, income, budgets, and savings.
+            </div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Expense-Tracker-Analysis" target="_blank"
+                rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://public.tableau.com/views/ExpenseTracker_17825615057320/Overview?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-project-index="5" data-tags="analytics powerbi excel dax" data-aos="fade-up"
+          data-aos-delay="160">
+          <div class="project-thumb pt6"><img src="images/E-Commerce.png"
+              alt="E-Commerce Sales Dashboard dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-pbi">Power BI</span><span
+                class="project-tag tag-excel">Excel</span><span class="project-tag tag-dax">DAX</span></div>
+            <div class="project-title">E-Commerce Sales Dashboard</div>
+            <div class="project-desc">Interactive Power BI dashboard analyzing sales, profit, customers, products,
+              orders, regional performance, and returns across 3,000+ transactions with 25+ DAX measures.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/E-Commerce-Sales-Dashboard"
+                target="_blank" rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://drive.google.com/file/d/1kOS3NcA6z91r4UKMiutGalyEmsLgyWUk/view?usp=sharing" target="_blank" rel="noopener" class="project-btn"><i
+                  class="fas fa-external-link-alt"></i>
+                Demo</a></div>
+          </div>
+        </div>
+
+        <div class="project-card" data-project-index="6" data-tags="analytics tableau sql excel" data-aos="fade-up">
+          <div class="project-thumb pt1"><img src="images/Hotel-Booking.png"
+              alt="Hotel Booking Analysis dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-tab">Tableau</span><span
+                class="project-tag tag-sql">SQL</span><span class="project-tag tag-excel">Excel</span></div>
+            <div class="project-title">Hotel Booking Analysis</div>
+            <div class="project-desc">Hotel Booking Analytics dashboard built with Tableau, SQL, and Excel Pivot Tables
+              to analyze bookings, cancellation rates, guest demographics, revenue per room, and hotel performance.
+            </div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Hotel-Booking-Analysis" target="_blank"
+                rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://public.tableau.com/views/HotelBookingAnalysis_17872301798110/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-project-index="7" data-tags="analytics excel pivot" data-aos="fade-up"
+          data-aos-delay="80">
+          <div class="project-thumb pt2"><img src="images/Social-Media.png"
+              alt="Social Media Analysis dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-excel">Excel</span><span
+                class="project-tag tag-pivot">Pivot Table</span></div>
+            <div class="project-title">Social Media Analysis</div>
+            <div class="project-desc">Social Media Analysis dashboard built with Excel Pivot Tables to analyze platform
+              performance, engagement, campaign ROI, audience insights, revenue, and advertising spend across 5,200+
+              posts.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Social-Media-Analysis" target="_blank"
+                rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://drive.google.com/file/d/1DSLewEzej_rGvvortZJSOSq2KFdrxKwi/view?usp=sharing" target="_blank" rel="noopener" class="project-btn"><i
+                  class="fas fa-external-link-alt"></i> Demo</a></div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="8" data-tags="analytics sql tableau"
+          data-aos="fade-up" data-aos-delay="160">
+          <div class="project-thumb pt3"><img src="images/Restaurant-Order.png"
+              alt="Restaurant Order Analysis dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-sql">SQL</span><span
+                class="project-tag tag-tab">Tableau</span></div>
+            <div class="project-title">Restaurant Order Analysis</div>
+            <div class="project-desc">Restaurant Order Analysis dashboard using Tableau and SQL to analyze sales,
+              customer behavior, peak ordering hours, menu categories, and operational throughput.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Restaurant-Order-Analysis"
+                target="_blank" rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://public.tableau.com/views/RestuarantAnalysis_17882513121580/Overview?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="9" data-tags="analytics excel pivot python"
+          data-aos="fade-up">
+          <div class="project-thumb pt4"><img src="images/Logistic-Shipment.png"
+              alt="Logistic Shipment Analysis dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-excel">Excel</span><span
+                class="project-tag tag-pivot">Pivot Table</span><span class="project-tag tag-py">Python</span></div>
+            <div class="project-title">Logistic Shipment Analysis</div>
+            <div class="project-desc">Supply chain and logistics performance dashboard utilizing Excel Pivot Tables and
+              analytics to evaluate on-time delivery rates, transit delay causes, carrier efficiency, and route
+              optimization.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Logistic-Shipment-Prediction"
+                target="_blank" rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://drive.google.com/file/d/1bHXsmb95q903AHvBfCBV78TGp-Yn8vqi/view?usp=sharing" target="_blank" rel="noopener" class="project-btn"><i
+                  class="fas fa-external-link-alt"></i> Demo</a></div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="10" data-tags="analytics python sql tableau excel"
+          data-aos="fade-up" data-aos-delay="80">
+          <div class="project-thumb pt5"><img src="images/Sales.png" alt="Sales Dashboard dashboard preview"
+              loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-py">Python</span><span
+                class="project-tag tag-sql">SQL</span><span class="project-tag tag-tab">Tableau</span><span
+                class="project-tag tag-excel">Excel</span></div>
+            <div class="project-title">Sales Dashboard</div>
+            <div class="project-desc">Interactive Sales Dashboard Analytics project using Tableau, Excel, SQL, and
+              Python to analyze multi-region sales, profitability, product segments, and year-over-year target
+              achievements.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Sales-Dashboard" target="_blank"
+                rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://public.tableau.com/views/SalesDashboard_17876468511570/Overview?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="11" data-tags="analytics powerbi dax"
+          data-aos="fade-up" data-aos-delay="160">
+          <div class="project-thumb thumb-dark pt6"><img src="images/Healthcare-Intelligence.png"
+              alt="Healthcare Operation Intelligence Platform dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-pbi">Power BI</span><span
+                class="project-tag tag-dax">DAX</span></div>
+            <div class="project-title">Healthcare Operation Intelligence Platform</div>
+            <div class="project-desc">Power BI operational intelligence platform tracking hospital KPIs, emergency room
+              wait times, bed occupancy rates, patient throughput, and department staffing efficiency with advanced DAX
+              measures.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Smart-HealthCare-Appointment-System"
+                target="_blank" rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://drive.google.com/file/d/1FcCZcJmYBhRQGYea73bFg1X1K-sBGzZS/view?usp=sharing" target="_blank" rel="noopener" class="project-btn"><i
+                  class="fas fa-external-link-alt"></i> Demo</a></div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="12" data-tags="analytics powerbi dax"
+          data-aos="fade-up">
+          <div class="project-thumb thumb-dark pt1"><img src="images/Startup-Funding.png"
+              alt="Startup Funding Intelligence Platform dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-pbi">Power BI</span><span
+                class="project-tag tag-dax">DAX</span></div>
+            <div class="project-title">Startup Funding Intelligence Platform</div>
+            <div class="project-desc">Startup Funding Intelligence Platform analyzing startup funding trends, investor
+              activity, industries, round sizes, and global investment patterns using Power BI and DAX.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Startup-Funding-Intelligence-Platform"
+                target="_blank" rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://drive.google.com/file/d/1dnyU252lFnUVv9rXaEzYy7zUH74zZYwz/view?usp=sharing" target="_blank" rel="noopener" class="project-btn"><i
+                  class="fas fa-external-link-alt"></i> Demo</a></div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="13" data-tags="analytics sql tableau"
+          data-aos="fade-up" data-aos-delay="80">
+          <div class="project-thumb pt2"><img src="images/Personal-Finance.png"
+              alt="Personal Finance Dashboard dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-sql">SQL</span><span
+                class="project-tag tag-tab">Tableau</span></div>
+            <div class="project-title">Personal Finance Dashboard</div>
+            <div class="project-desc">Comprehensive personal finance dashboard engineered in SQL and Tableau to
+              visualize income streams, expense breakdowns, monthly savings targets, net worth trajectory, and cash flow
+              patterns.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Ai-Personal-Finance-Dashboard"
+                target="_blank" rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://public.tableau.com/views/PersonalFinance_17831646029530/Overview?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="14" data-tags="analytics powerbi dax"
+          data-aos="fade-up" data-aos-delay="160">
+          <div class="project-thumb thumb-dark pt3"><img src="images/Github-Trend.png"
+              alt="Github Technology Trend Analyzer dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-pbi">Power BI</span><span
+                class="project-tag tag-dax">DAX</span></div>
+            <div class="project-title">Github Technology Trend Analyzer</div>
+            <div class="project-desc">Open source analytics platform built in Power BI with DAX modeling developer
+              velocity, programming language market shares, repository star trajectories, and technology adoption
+              cycles.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/GitHub-Technology-Trend-Analyzer"
+                target="_blank" rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://drive.google.com/file/d/1UtxNXvsZsm_kO_3xA-wbQNLenEiWr19P/view?usp=sharing" target="_blank" rel="noopener" class="project-btn"><i
+                  class="fas fa-external-link-alt"></i> Demo</a></div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="15" data-tags="analytics powerbi dax"
+          data-aos="fade-up">
+          <div class="project-thumb thumb-dark pt4"><img src="images/Job-Market.png"
+              alt="Job Market Intelligence Dashboard dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-pbi">Power BI</span><span
+                class="project-tag tag-dax">DAX</span></div>
+            <div class="project-title">Job Market Intelligence Dashboard</div>
+            <div class="project-desc">Job Market Intelligence Dashboard built with Power BI to analyze hiring trends,
+              market salary benchmarks, in-demand technical skills, top hiring companies, industries, and job locations.
+            </div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Job-Market-Intelligence-Analysis"
+                target="_blank" rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://drive.google.com/file/d/1zUx9pfdF4EaDGsCDjIf7I3l7YYFWy4ve/view?usp=sharing" target="_blank" rel="noopener" class="project-btn"><i
+                  class="fas fa-external-link-alt"></i> Demo</a></div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="16" data-tags="analytics powerbi dax sql excel"
+          data-aos="fade-up" data-aos-delay="80">
+          <div class="project-thumb thumb-dark pt5"><img src="images/Banking-Loan.png"
+              alt="Banking Loan Risk Analysis dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-pbi">Power BI</span><span
+                class="project-tag tag-dax">DAX</span><span class="project-tag tag-sql">SQL</span><span
+                class="project-tag tag-excel">Excel</span></div>
+            <div class="project-title">Banking Loan Risk Analysis</div>
+            <div class="project-desc">Banking Loan Risk Analysis Dashboard using Power BI, Power Query & DAX to analyze
+              loan portfolio performance, default probabilities, credit risk tiers, and customer demographic metrics.
+            </div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Banking-Loan-Risk-Analysis"
+                target="_blank" rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://drive.google.com/file/d/1WQvWCbMTaKV9R2mXYa11rrRlWPD61Tcr/view?usp=sharing" target="_blank" rel="noopener" class="project-btn"><i
+                  class="fas fa-external-link-alt"></i> Demo</a></div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="17" data-tags="analytics tableau" data-aos="fade-up"
+          data-aos-delay="160">
+          <div class="project-thumb pt6"><img src="images/Telecom-Churn.png"
+              alt="Telecom Churn Analysis dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-tab">Tableau</span></div>
+            <div class="project-title">Telecom Churn Analysis</div>
+            <div class="project-desc">Telecom Customer Churn Analysis using Tableau to evaluate customer attrition
+              drivers, contract lengths, service usage patterns, demographic risk profiles, and revenue impact.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Telecom-Churn-Analysis" target="_blank"
+                rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://public.tableau.com/views/TeleconChurnAnalysis/Overview?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="18" data-tags="analytics tableau"
+          data-aos="fade-up">
+          <div class="project-thumb thumb-dark pt1"><img src="images/Pulse-Board.png"
+              alt="Pulse Board Analytics dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-tab">Tableau</span></div>
+            <div class="project-title">Pulse Board Analytics</div>
+            <div class="project-desc">Interactive Tableau analytics board delivering organizational pulse metrics,
+              real-time KPI scorecards, sentiment and engagement trends, and cross-team operational performance
+              indicators.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Pulse-Board-Analytics" target="_blank"
+                rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://public.tableau.com/views/PulseBoardAnalytics/Overview?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="19" data-tags="analytics powerbi dax"
+          data-aos="fade-up" data-aos-delay="80">
+          <div class="project-thumb thumb-dark pt2"><img src="images/Movie-OTT.png" alt="Movie OTT dashboard preview"
+              loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-pbi">Power BI</span><span
+                class="project-tag tag-dax">DAX</span></div>
+            <div class="project-title">Movie OTT</div>
+            <div class="project-desc">Movie / OTT Platform Data Analysis dashboard using Power BI and DAX to dissect
+              streaming content catalogs, IMDb/Rotten Tomatoes ratings, genre popularity, platform exclusives, and
+              trends.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Movie-OTT" target="_blank" rel="noopener"
+                class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a href="https://drive.google.com/file/d/1h7vNU9ShYfulAKaChCoR-Nn3bfC0ny2Z/view?usp=sharing"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="20" data-tags="analytics sql tableau"
+          data-aos="fade-up" data-aos-delay="160">
+          <div class="project-thumb pt3"><img src="images/Movie-Analysis.png" alt="Movie Analysis dashboard preview"
+              loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-sql">SQL</span><span
+                class="project-tag tag-tab">Tableau</span></div>
+            <div class="project-title">Movie Analysis</div>
+            <div class="project-desc">Movie industry analytics project built with SQL queries and Tableau visualizations
+              analyzing box office revenue, production budgets, ROI ratios, genre profitability, and top-rated movies.
+            </div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Movie-Analysis" target="_blank"
+                rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://public.tableau.com/shared/M89SH45GG?:display_count=n&:origin=viz_share_link"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="21"
+          data-tags="analytics python sql excel powerbi dax" data-aos="fade-up">
+          <div class="project-thumb pt4"><img src="images/Myntra-Analysis.jpg" alt="Myntra Analysis dashboard preview"
+              loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-py">Python</span><span
+                class="project-tag tag-sql">SQL</span><span class="project-tag tag-excel">Excel</span><span
+                class="project-tag tag-pbi">Power BI</span><span class="project-tag tag-dax">DAX</span></div>
+            <div class="project-title">Myntra Analysis</div>
+            <div class="project-desc">Myntra E-Commerce Data Analytics project using Excel, Python, Microsoft SQL
+              Server, and Power BI to analyze sales, product catalogs, brand market shares, discounts, customer ratings,
+              and returns.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Myntra-Analysis" target="_blank"
+                rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://drive.google.com/file/d/16Zt77Os2w33-brxbk5sg7IQXUXs1tbhc/view?usp=sharing" target="_blank" rel="noopener" class="project-btn"><i
+                  class="fas fa-external-link-alt"></i> Demo</a></div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="22" data-tags="analytics python sql tableau excel"
+          data-aos="fade-up" data-aos-delay="80">
+          <div class="project-thumb thumb-dark pt5"><img src="images/Nykaa-Analysis.jpg"
+              alt="Nykaa Analysis dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-py">Python</span><span
+                class="project-tag tag-sql">SQL</span><span class="project-tag tag-tab">Tableau</span><span
+                class="project-tag tag-excel">Excel</span></div>
+            <div class="project-title">Nykaa Analysis</div>
+            <div class="project-desc">Beauty & cosmetics retail analytics analyzing Nykaa e-commerce data with Python,
+              SQL, Tableau, and Excel — examining category revenues, brand margins, discount effectiveness, and repeat
+              customer trends.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Nykaa-Data-Analytics" target="_blank"
+                rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://public.tableau.com/views/NykaaAnalysis_17900836751920/Overview?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+                target="_blank" rel="noopener" class="project-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="23" data-tags="analytics powerbi dax"
+          data-aos="fade-up" data-aos-delay="160">
+          <div class="project-thumb pt6"><img src="images/Smart-City.png"
+              alt="Smart City Traffic Analysis dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-pbi">Power BI</span><span
+                class="project-tag tag-dax">DAX</span></div>
+            <div class="project-title">Smart City Traffic Analysis</div>
+            <div class="project-desc">Smart City Traffic Analytics dashboard built using Power BI and DAX to analyze
+              urban traffic trends, congestion bottlenecks, vehicle patterns, accident-prone zones, and weather impact.
+            </div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Smart-City-Traffic-Analytics"
+                target="_blank" rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://drive.google.com/file/d/1XjLFTQb6AjIbdQKbywR0cXXMYqwJ7XiH/view?usp=sharing" target="_blank" rel="noopener" class="project-btn"><i
+                  class="fas fa-external-link-alt"></i> Demo</a></div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="24" data-tags="analytics excel pivot"
+          data-aos="fade-up">
+          <div class="project-thumb thumb-dark pt1"><img src="images/Airline-Ticket.png"
+              alt="Airline Ticket Price Optimization dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-excel">Excel</span><span
+                class="project-tag tag-pivot">Pivot Table</span></div>
+            <div class="project-title">Airline Ticket Price Optimization</div>
+            <div class="project-desc">Advanced Excel analytical model employing Pivot Tables, scenario analysis, and
+              pricing elasticity to optimize airline flight pricing, seat occupancy load factors, and route revenue
+              yield.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/Airline-Ticket-Price-Optimization" target="_blank" rel="noopener"
+                class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://drive.google.com/file/d/1NscIezOFWWq03WCCTwEbMOXo2qYJ12Lv/view?usp=sharing" target="_blank" rel="noopener" class="project-btn"><i
+                  class="fas fa-external-link-alt"></i> Demo</a></div>
+          </div>
+        </div>
+
+        <div class="project-card extra-project" data-project-index="25" data-tags="analytics excel pivot"
+          data-aos="fade-up" data-aos-delay="80">
+          <div class="project-thumb thumb-dark pt2"><img src="images/College-Placement.png"
+              alt="College Placement Analytics dashboard preview" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-tags"><span class="project-tag tag-excel">Excel</span><span
+                class="project-tag tag-pivot">Pivot Table</span></div>
+            <div class="project-title">College Placement Analytics</div>
+            <div class="project-desc">Excel dashboard for college placement analytics: analyzing 3,500+ student
+              placement records with Pivot Tables, tracking recruiter participation, salary packages, department trends,
+              and hiring KPIs.</div>
+            <div class="project-btns"><a href="https://github.com/vijeelakshmi/College_Placement_Analytics"
+                target="_blank" rel="noopener" class="project-btn prim"><i class="fab fa-github"></i> GitHub</a><a
+                href="https://drive.google.com/file/d/1LuWlXIwU9Wa2crh4BZUfhygGwy0NCoXC/view?usp=sharing" target="_blank" rel="noopener" class="project-btn"><i
+                  class="fas fa-external-link-alt"></i> Demo</a></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="view-all-projects-wrap" id="viewAllProjectsWrap">
+        <button class="view-all-projects-btn" id="viewAllProjectsBtn" aria-expanded="false">
+          <span class="btn-text">View All Projects (26)</span>
+          <i class="fas fa-chevron-down btn-icon"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== DATA PIPELINE VISUALIZATION ===== -->
+  <section id="pipeline" aria-label="Data pipeline architecture">
+    <div class="container">
+      <div data-aos="fade-up" style="text-align:center">
+        <div class="section-tag"><i class="fas fa-project-diagram"></i> Workflow</div>
+        <h2 class="section-title">My Analytics <span class="tg4">Workflow</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">An animated view of how I take raw data to a decision-ready
+          dashboard.</p>
+      </div>
+      <div class="pipeline-wrap" data-aos="zoom-in">
+        <div class="pipeline-title">Raw Data to Decision-Ready Dashboard</div>
+        <div class="pipeline-flow">
+          <div class="pipe-node">
+            <div class="pipe-icon pi-src">🗃️</div>
+            <div class="pipe-label">Data Sources</div>
+          </div>
+          <div class="pipe-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="pipe-node">
+            <div class="pipe-icon pi-kafka">🗄️</div>
+            <div class="pipe-label">SQL Queries</div>
+          </div>
+          <div class="pipe-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="pipe-node">
+            <div class="pipe-icon pi-spark">🐍</div>
+            <div class="pipe-label">Python Cleaning</div>
+          </div>
+          <div class="pipe-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="pipe-node">
+            <div class="pipe-icon pi-s3">📋</div>
+            <div class="pipe-label">Excel Modeling</div>
+          </div>
+          <div class="pipe-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="pipe-node">
+            <div class="pipe-icon pi-snow">📈</div>
+            <div class="pipe-label">Tableau</div>
+          </div>
+          <div class="pipe-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="pipe-node">
+            <div class="pipe-icon pi-bi">📊</div>
+            <div class="pipe-label">Power BI Dashboard</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== EXPERIENCE TIMELINE ===== -->
+  <section id="timeline" aria-label="Career timeline">
+    <div class="container">
+      <div data-aos="fade-up" style="text-align:center">
+        <div class="section-tag"><i class="fas fa-road"></i> Journey</div>
+        <h2 class="section-title">My Growth <span class="tg1">Timeline</span></h2>
+      </div>
+      <div class="timeline-wrap">
+        <div class="timeline-line" aria-hidden="true"></div>
+        <div class="timeline-item" data-aos="fade-right">
+          <div class="timeline-content">
+            <div class="timeline-year">July 2025 — May 2026</div>
+            <div class="timeline-event">Itkraftz</div>
+            <div class="timeline-role">Software Product Owner Intern</div>
+            <div class="timeline-desc">Supported product planning, requirements gathering, and collaboration across
+              software development teams</div>
+          </div>
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-spacer"></div>
+        </div>
+        <div class="timeline-item" data-aos="fade-left">
+          <div class="timeline-spacer"></div>
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2024 — 2025</div>
+            <div class="timeline-event">Brindavan College</div>
+            <div class="timeline-role">Master of Computer Applications (MCA)</div>
+            <div class="timeline-desc">Completed MCA with a CGPA of 8.71</div>
+          </div>
+        </div>
+        <div class="timeline-item" data-aos="fade-right">
+          <div class="timeline-content">
+            <div class="timeline-year">2020 — 2023</div>
+            <div class="timeline-event">Jyoti Nivas College Autonomous</div>
+            <div class="timeline-role">BSc Computer Science</div>
+            <div class="timeline-desc">Completed undergraduate studies with 66%</div>
+          </div>
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-spacer"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== STATISTICS ===== -->
+  <section id="statistics" aria-label="Statistics">
+    <div class="container">
+      <div data-aos="fade-up" style="text-align:center">
+        <div class="section-tag"><i class="fas fa-chart-bar"></i> By the Numbers</div>
+        <h2 class="section-title">Impact in <span class="tgall">Numbers</span></h2>
+      </div>
+      <div class="stats-big-grid">
+        <div class="big-stat-card" data-aos="zoom-in" data-aos-delay="0">
+          <div class="big-stat-icon">🗂️</div>
+          <div class="big-stat-num" data-count="26">0</div>
+          <div class="big-stat-label">Projects Completed</div>
+        </div>
+        <div class="big-stat-card" data-aos="zoom-in" data-aos-delay="60">
+          <div class="big-stat-icon">📦</div>
+          <div class="big-stat-num" data-count="15">0</div>
+          <div class="big-stat-label">Datasets Analyzed</div>
+        </div>
+        <div class="big-stat-card" data-aos="zoom-in" data-aos-delay="120">
+          <div class="big-stat-icon">📊</div>
+          <div class="big-stat-num" data-count="12">0</div>
+          <div class="big-stat-label">Dashboards Built</div>
+        </div>
+        <div class="big-stat-card" data-aos="zoom-in" data-aos-delay="180">
+          <div class="big-stat-icon">📈</div>
+          <div class="big-stat-num" data-count="8">0</div>
+          <div class="big-stat-label">KPI Reports Delivered</div>
+        </div>
+        <div class="big-stat-card" data-aos="zoom-in" data-aos-delay="240">
+          <div class="big-stat-icon">🗄️</div>
+          <div class="big-stat-num" data-count="6">0</div>
+          <div class="big-stat-label">SQL Queries Automated</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== GITHUB ===== -->
+  <section id="github" aria-label="GitHub portfolio">
+    <div class="container">
+      <div data-aos="fade-up" style="text-align:center">
+        <div class="section-tag"><i class="fab fa-github"></i> GitHub</div>
+        <h2 class="section-title">Open Source <span class="tg2">Portfolio</span></h2>
+      </div>
+      <div class="github-layout">
+        <div class="github-profile-card" data-aos="fade-right">
+          <div class="github-avatar"><i class="fab fa-github"></i></div>
+          <div class="github-name">Vijayalakshmi R</div>
+          <div class="github-handle">@vijeelakshmi</div>
+          <div class="github-stats">
+            <div class="gh-stat">
+              <div class="gh-stat-val" id="ghRepoCount">—</div>
+              <div class="gh-stat-lbl">Repos</div>
+            </div>
+            <div class="gh-stat">
+              <div class="gh-stat-val" id="ghStarCount">—</div>
+              <div class="gh-stat-lbl">Stars</div>
+            </div>
+            <div class="gh-stat">
+              <div class="gh-stat-val" id="ghFollowerCount">—</div>
+              <div class="gh-stat-lbl">Followers</div>
+            </div>
+            <div class="gh-stat">
+              <div class="gh-stat-val" id="ghForkCount">—</div>
+              <div class="gh-stat-lbl">Forks</div>
+            </div>
+          </div>
+          <a href="https://github.com/vijeelakshmi" target="_blank" rel="noopener" class="github-btn"><i
+              class="fab fa-github"></i> View GitHub Profile</a>
+        </div>
+        <div data-aos="fade-left">
+          <div class="repos-grid" id="githubRepos" aria-live="polite">
+            <div class="repo-card">
+              <div class="repo-desc">Loading your latest repositories…</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== CERTIFICATIONS ===== -->
+  <section id="certifications" aria-label="Certifications section">
+    <div class="container">
+      <div data-aos="fade-up" style="text-align:center">
+        <div class="section-tag"><i class="fas fa-certificate"></i> Certifications</div>
+        <h2 class="section-title">Professional <span class="tg3">Credentials</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">Industry-recognized certifications validating data analytics
+          expertise.</p>
+      </div>
+      <div class="certs-grid" id="certsGrid">
+        <div class="cert-card" data-cert-tags="analytics" data-cert-index="0" data-aos="fade-up">
+          <a class="cert-thumb ct1" href="pdf/Data%20Analysis.pdf" target="_blank" rel="noopener"
+            aria-label="View Introduction to Data Analytics certificate PDF">🎓</a>
+          <div class="cert-body">
+            <div class="cert-org">Simplilearn</div>
+            <div class="cert-title">Introduction to Data Analytics</div>
+            <div class="cert-meta">Issued: 20 May 2026 · Simplilearn</div>
+            <div class="cert-id">Certificate Code: 10243365</div>
+            <div class="cert-skills"><span class="cert-skill-tag">Data Analytics</span></div>
+            <div class="cert-btns"><a href="pdf/Data%20Analysis.pdf" target="_blank" rel="noopener"
+                class="cert-btn cprim"><i class="fas fa-eye"></i> View PDF</a><a href="pdf/Data%20Analysis.pdf" download
+                class="cert-btn"><i class="fas fa-download"></i> Download</a></div>
+          </div>
+        </div>
+        <div class="cert-card" data-cert-tags="analytics" data-aos="fade-up" data-aos-delay="80">
+          <a class="cert-thumb ct2" href="pdf/EXCEL%201.pdf" target="_blank" rel="noopener"
+            aria-label="View Introduction to MS Excel certificate PDF">📊</a>
+          <div class="cert-body">
+            <div class="cert-org">Simplilearn</div>
+            <div class="cert-title">Introduction to MS Excel</div>
+            <div class="cert-meta">Issued: 20 April 2026 · Simplilearn</div>
+            <div class="cert-id">Certificate Code: 10122992</div>
+            <div class="cert-skills"><span class="cert-skill-tag">Microsoft Excel</span></div>
+            <div class="cert-btns"><a href="pdf/EXCEL%201.pdf" target="_blank" rel="noopener" class="cert-btn cprim"><i
+                  class="fas fa-eye"></i> View PDF</a><a href="pdf/EXCEL%201.pdf" download class="cert-btn"><i
+                  class="fas fa-download"></i> Download</a></div>
+          </div>
+        </div>
+        <div class="cert-card" data-cert-tags="analytics" data-aos="fade-up" data-aos-delay="160">
+          <a class="cert-thumb ct3" href="pdf/Power%20Bi.pdf" target="_blank" rel="noopener"
+            aria-label="View Power BI for Beginners certificate PDF">📈</a>
+          <div class="cert-body">
+            <div class="cert-org">Simplilearn</div>
+            <div class="cert-title">Power BI for Beginners</div>
+            <div class="cert-meta">Issued: 23 December 2025 · Simplilearn</div>
+            <div class="cert-id">Certificate Code: 9622919</div>
+            <div class="cert-skills"><span class="cert-skill-tag">Power BI</span></div>
+            <div class="cert-btns"><a href="pdf/Power%20Bi.pdf" target="_blank" rel="noopener" class="cert-btn cprim"><i
+                  class="fas fa-eye"></i> View PDF</a><a href="pdf/Power%20Bi.pdf" download class="cert-btn"><i
+                  class="fas fa-download"></i> Download</a></div>
+          </div>
+        </div>
+        <div class="cert-card" data-cert-tags="analytics" data-aos="fade-up">
+          <a class="cert-thumb ct4" href="pdf/Tableau%20Data%20Visualiztion.pdf" target="_blank" rel="noopener"
+            aria-label="View Tableau Data Visualization certificate PDF">📉</a>
+          <div class="cert-body">
+            <div class="cert-org">Simplilearn</div>
+            <div class="cert-title">Tableau Data Visualization Basics Tutorial</div>
+            <div class="cert-meta">Issued: 14 February 2026 · Simplilearn</div>
+            <div class="cert-id">Certificate Code: 9836832</div>
+            <div class="cert-skills"><span class="cert-skill-tag">Tableau</span><span class="cert-skill-tag">Data
+                Visualization</span></div>
+            <div class="cert-btns"><a href="pdf/Tableau%20Data%20Visualiztion.pdf" target="_blank" rel="noopener"
+                class="cert-btn cprim"><i class="fas fa-eye"></i> View PDF</a><a
+                href="pdf/Tableau%20Data%20Visualiztion.pdf" download class="cert-btn"><i class="fas fa-download"></i>
+                Download</a></div>
+          </div>
+        </div>
+        <div class="cert-card" data-cert-tags="analytics" data-aos="fade-up" data-aos-delay="80">
+          <a class="cert-thumb ct5" href="pdf/SQL.pdf" target="_blank" rel="noopener"
+            aria-label="View Introduction to SQL certificate PDF">🗄️</a>
+          <div class="cert-body">
+            <div class="cert-org">Simplilearn</div>
+            <div class="cert-title">Introduction to SQL</div>
+            <div class="cert-meta">Issued: 12 June 2026 · Simplilearn</div>
+            <div class="cert-id">Certificate Code: 10339482</div>
+            <div class="cert-skills"><span class="cert-skill-tag">SQL</span></div>
+            <div class="cert-btns"><a href="pdf/SQL.pdf" target="_blank" rel="noopener" class="cert-btn cprim"><i
+                  class="fas fa-eye"></i> View PDF</a><a href="pdf/SQL.pdf" download class="cert-btn"><i
+                  class="fas fa-download"></i> Download</a></div>
+          </div>
+        </div>
+        <div class="cert-card" data-cert-tags="analytics" data-aos="fade-up" data-aos-delay="160">
+          <a class="cert-thumb ct1" href="pdf/Data%20Analysis%20Essential.pdf" target="_blank" rel="noopener"
+            aria-label="View Data Analytics Essentials certificate PDF">🏅</a>
+          <div class="cert-body">
+            <div class="cert-org">Cisco Networking Academy</div>
+            <div class="cert-title">Data Analytics Essentials</div>
+            <div class="cert-meta">Issued: 23 January 2026 · Cisco Networking Academy</div>
+            <div class="cert-skills"><span class="cert-skill-tag">Data Analytics</span></div>
+            <div class="cert-btns"><a href="pdf/Data%20Analysis%20Essential.pdf" target="_blank" rel="noopener"
+                class="cert-btn cprim"><i class="fas fa-eye"></i> View PDF</a><a
+                href="pdf/Data%20Analysis%20Essential.pdf" download class="cert-btn"><i class="fas fa-download"></i>
+                Download</a></div>
+          </div>
+        </div>
+        <div class="cert-card" data-cert-tags="analytics" data-aos="fade-up" data-aos-delay="240">
+          <a class="cert-thumb ct2" href="pdf/Python%20cousera.pdf" target="_blank" rel="noopener"
+            aria-label="View Crash Course on Python certificate PDF">🐍</a>
+          <div class="cert-body">
+            <div class="cert-org">Google · Coursera</div>
+            <div class="cert-title">Crash Course on Python</div>
+            <div class="cert-meta">Issued: 11 August 2026 · Google · Coursera</div>
+            <div class="cert-skills"><span class="cert-skill-tag">Python</span><span
+                class="cert-skill-tag">Programming</span></div>
+            <div class="cert-btns"><a href="pdf/Python%20cousera.pdf" target="_blank" rel="noopener"
+                class="cert-btn cprim"><i class="fas fa-eye"></i> View PDF</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" aria-label="Contact section">
+    <div class="container">
+      <div data-aos="fade-up" style="text-align:center">
+        <div class="section-tag"><i class="fas fa-paper-plane"></i> Contact</div>
+        <h2 class="section-title">Let's <span class="tg3">Connect</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">Open to data roles, freelance analytics projects, and exciting
+          collaborations.</p>
+      </div>
+      <div class="contact-grid">
+        <div data-aos="fade-right">
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="contact-info-label">Email</div>
+              <div class="contact-info-val">vijaya0835@email.com</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <div class="contact-info-label">Phone</div>
+              <div class="contact-info-val">+91 8861916135</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <div class="contact-info-label">Location</div>
+              <div class="contact-info-val">Bangalore, India</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+            <div>
+              <div class="contact-info-label">LinkedIn</div>
+              <div class="contact-info-val">linkedin.com/in/vijayalakshmi0808</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fab fa-github"></i></div>
+            <div>
+              <div class="contact-info-label">GitHub</div>
+              <div class="contact-info-val">github.com/vijeelakshmi</div>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xjybkqyn" method="POST"
+          data-aos="fade-left">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label" for="fname">Full Name</label><input type="text"
+                class="form-input" id="fname" name="name" placeholder="Jane Smith" autocomplete="name" required></div>
+            <div class="form-group"><label class="form-label" for="femail">Email Address</label><input type="email"
+                class="form-input" id="femail" name="email" placeholder="jane@company.com" autocomplete="email"
+                required></div>
+          </div>
+          <div class="form-group"><label class="form-label" for="fsubject">Subject</label><input type="text"
+              class="form-input" id="fsubject" name="subject" placeholder="Data Analyst Role — Your Company" required>
+          </div>
+          <div class="form-group"><label class="form-label" for="fmessage">Message</label><textarea
+              class="form-textarea" id="fmessage" name="message" rows="5" placeholder="Hi! I'd love to discuss…"
+              required></textarea></div>
+          <button type="submit" class="form-submit" id="formSubmit"><i class="fas fa-paper-plane"></i> Send
+            Message</button>
+          <div class="form-success" id="formSuccess"><i class="fas fa-check-circle"
+              style="font-size:2rem;display:block;margin-bottom:7px"></i>Message sent! I'll get back to you soon.</div>
+          <div class="form-error" id="formError" role="alert"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="nav-logo">Vijayalakshmi R.</span>
+          <p>Data Analyst. Turning raw data into SQL queries, clean spreadsheets, and dashboards that drive decisions.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="footer-social"><i class="fab fa-github"></i></a>
+            <a href="#" class="footer-social"><i class="fas fa-chart-bar"></i></a>
+            <a href="#" class="footer-social"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Expertise</h4>
+          <ul>
+            <li><a href="#skills">SQL</a></li>
+            <li><a href="#skills">Excel</a></li>
+            <li><a href="#skills">Tableau</a></li>
+            <li><a href="#skills">Power BI</a></li>
+            <li><a href="#pipeline">Workflow</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Work</h4>
+          <ul>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#github">GitHub</a></li>
+            <li><a href="#timeline">Journey</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 Vijayalakshmi R. Built with data, caffeine, and curiosity.</span>
+        <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i
+            class="fas fa-arrow-up"></i></button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    /* ============================================================
+       AOS INIT
+    ============================================================ */
+    if (typeof AOS !== 'undefined') {
+      AOS.init({ duration: 600, easing: 'ease-out-cubic', once: true, offset: 60 });
+    } else {
+      document.querySelectorAll('[data-aos]').forEach(el => el.removeAttribute('data-aos'));
+    }
+
+    /* ============================================================
+       GLOBAL ANIMATED BACKGROUND CANVAS — disabled (kept as no-op
+       for compatibility with the rest of the script below)
+    ============================================================ */
+    (function () {
+      const canvas = document.getElementById('video-bg');
+      if (!canvas || canvas.style.display === 'none') { /* background canvas hidden via CSS; skip heavy render loop */ }
+    })();
+
+    /* ============================================================
+       HERO BACKGROUND CANVAS — disabled via CSS (#hero-bg-canvas{display:none})
+    ============================================================ */
+    (function () {
+      setTimeout(() => document.body.classList.add('intro-done'), 1600);
+    })();
+
+    /* ============================================================
+       CINEMATIC INTRO ENGINE — simplified, no canvas particles
+    ============================================================ */
+    (function () {
+      const overlay = document.getElementById('intro-overlay');
+      const wipe = document.getElementById('intro-wipe');
+      let running = true;
+      const phases = document.querySelectorAll('.intro-phase');
+      function showPhase(n) { phases.forEach((p, i) => p.classList.toggle('active', i === n)); }
+      function countUp(el, target, dur) {
+        const isFloat = !Number.isInteger(target); const start = Date.now();
+        const step = () => { const el2 = document.getElementById(el); if (!el2) return; const prog = Math.min((Date.now() - start) / dur, 1); const ease = 1 - Math.pow(1 - prog, 3); const val = target * ease; el2.textContent = (isFloat ? val.toFixed(2) : Math.floor(val)) + '+'; if (prog < 1) requestAnimationFrame(step); };
+        requestAnimationFrame(step);
+      }
+      function runIntro() {
+        showPhase(0);
+        setTimeout(() => { showPhase(1); const words = document.querySelectorAll('.intro-title-word'); words.forEach((w, i) => setTimeout(() => w.classList.add('revealed'), 400 + i * 110)); }, 900);
+        setTimeout(() => { showPhase(2); setTimeout(() => { countUp('istat1', 26, 700); countUp('istat2', 12, 700); setTimeout(() => countUp('istat3', 15, 600), 120); setTimeout(() => countUp('istat4', 8, 650), 200); }, 300); }, 2000);
+        setTimeout(() => { showPhase(3); const pills = document.querySelectorAll('.intro-skill-pill'); pills.forEach((p, i) => setTimeout(() => p.classList.add('revealed'), 250 + i * 100)); }, 3100);
+        setTimeout(() => { showPhase(4); setTimeout(() => { const pbar = document.getElementById('intro-progress-bar'); if (pbar) pbar.style.width = '100%'; }, 300); }, 4200);
+        setTimeout(exitIntro, 6200);
+      }
+      function exitIntro() { if (!running) return; running = false; wipe.classList.add('wiping'); setTimeout(() => { overlay.classList.add('hidden'); setTimeout(() => { overlay.remove(); }, 600); }, 400); }
+      function skipIntro() { exitIntro(); }
+      window.skipIntro = skipIntro;
+      document.getElementById('intro-cta-main').addEventListener('click', exitIntro);
+      if (document.fonts && document.fonts.ready) { document.fonts.ready.then(runIntro); } else { setTimeout(runIntro, 300); }
+    })();
+
+    /* ============================================================
+       NAVBAR SCROLL + ACTIVE LINK
+    ============================================================ */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let cur2 = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur2 = s.id; });
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur2));
+    });
+
+    /* ============================================================
+       HAMBURGER
+    ============================================================ */
+    const ham = document.getElementById('hamburger'), mob = document.getElementById('mobileMenu');
+    ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); ham.setAttribute('aria-expanded', ham.classList.contains('open')); });
+    mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { ham.classList.remove('open'); mob.classList.remove('open'); }));
+
+    /* ============================================================
+       THEME TOGGLE
+    ============================================================ */
+    const themeBtn = document.getElementById('themeBtn');
+    const toggleLabel = document.getElementById('toggleLabel');
+    let isDark = localStorage.getItem('theme') === 'dark';
+    function applyTheme() {
+      document.body.classList.toggle('light-mode', !isDark);
+      if (toggleLabel) toggleLabel.textContent = isDark ? 'Dark' : 'Light';
+      themeBtn.setAttribute('aria-checked', isDark ? 'true' : 'false');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+    document.body.classList.add('light-mode');
+    applyTheme();
+    themeBtn.addEventListener('click', () => { isDark = !isDark; applyTheme(); });
+
+    /* ============================================================
+       TYPEWRITER
+    ============================================================ */
+    const roles = ['SQL queries', 'Excel reports', 'Tableau dashboards', 'Power BI dashboards', 'KPI reports', 'analytics solutions'];
+    let ri = 0, ci = 0, del = false;
+    const tw = document.getElementById('typewriter');
+    function type() {
+      if (!tw) return;
+      const word = roles[ri];
+      tw.textContent = del ? word.slice(0, ci--) : word.slice(0, ci++);
+      if (!del && ci > word.length) { del = true; setTimeout(type, 1200); return; }
+      if (del && ci < 0) { del = false; ri = (ri + 1) % roles.length; ci = 0; }
+      setTimeout(type, del ? 48 : 88);
+    }
+    type();
+
+    /* ============================================================
+       SKILLS TAB SWITCHER
+    ============================================================ */
+    document.querySelectorAll('.skill-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.skill-tab').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.skills-pane').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const pane = document.getElementById('tab-' + btn.dataset.tab);
+        if (pane) { pane.classList.add('active'); animateBarsInPane(pane); }
+      });
+    });
+
+    /* ============================================================
+       SKILL BARS
+    ============================================================ */
+    function animateBarsInPane(pane) {
+      pane.querySelectorAll('.skill-bar').forEach(b => { b.style.width = b.dataset.pct + '%'; });
+    }
+    const barObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.querySelectorAll('.skill-bar').forEach(b => { b.style.width = b.dataset.pct + '%'; }); } });
+    }, { threshold: .3 });
+    document.querySelectorAll('.skill-category').forEach(el => barObs.observe(el));
+    setTimeout(() => animateBarsInPane(document.getElementById('tab-analytics')), 500);
+
+    /* ============================================================
+       COUNTER ANIMATION (universal)
+    ============================================================ */
+    function animateCounter(el, target) {
+      const isFloat = String(target).includes('.');
+      let s = 0; const dur = 1500; const step = 16; const inc = target / (dur / step);
+      const timer = setInterval(() => { s += inc; if (s >= target) { s = target; clearInterval(timer); } el.textContent = isFloat ? s.toFixed(1) : Math.floor(s); }, step);
+    }
+    const cntObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target, parseFloat(e.target.dataset.count)); cntObs.unobserve(e.target); } });
+    }, { threshold: .5 });
+    document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
+
+    /* ============================================================
+   PROJECT FILTER & VIEW ALL TOGGLE
+============================================================ */
+    let showAllProjects = false;
+    const viewAllWrap = document.getElementById('viewAllProjectsWrap');
+    const viewAllBtn = document.getElementById('viewAllProjectsBtn');
+
+    document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterProjects();
+      });
+    });
+
+    document.getElementById('projectSearch')?.addEventListener('input', filterProjects);
+
+    function filterProjects() {
+      const activeFilterBtn = document.querySelector('.filter-btn[data-filter].active');
+      const f = activeFilterBtn ? activeFilterBtn.dataset.filter : 'all';
+      const q = (document.getElementById('projectSearch')?.value || '').trim().toLowerCase();
+      const allCards = document.querySelectorAll('.project-card');
+      const isFiltered = (f !== 'all') || (q !== '');
+
+      let matchingCount = 0;
+      allCards.forEach((card, index) => {
+        const tags = (card.dataset.tags || '').toLowerCase();
+        const title = (card.querySelector('.project-title')?.textContent || '').toLowerCase();
+        const desc = (card.querySelector('.project-desc')?.textContent || '').toLowerCase();
+        const matches = (f === 'all' || tags.includes(f)) && (!q || title.includes(q) || desc.includes(q) || tags.includes(q));
+
+        if (!matches) {
+          card.style.display = 'none';
+        } else {
+          matchingCount++;
+          if (isFiltered) {
+            // When filtering or searching, show all matching projects
+            card.style.display = '';
+          } else {
+            // Default view: show only first 8 projects unless "View All" is toggled
+            if (!showAllProjects && index >= 8) {
+              card.style.display = 'none';
+            } else {
+              card.style.display = '';
+            }
+          }
+        }
+      });
+
+      // Update View All button visibility, count, and state
+      if (viewAllWrap && viewAllBtn) {
+        if (isFiltered) {
+          viewAllWrap.style.display = 'none';
+        } else {
+          viewAllWrap.style.display = 'flex';
+          const btnText = viewAllBtn.querySelector('.btn-text');
+          const btnIcon = viewAllBtn.querySelector('.btn-icon');
+          if (showAllProjects) {
+            viewAllBtn.classList.add('expanded');
+            viewAllBtn.setAttribute('aria-expanded', 'true');
+            if (btnText) btnText.textContent = 'Show Less';
+            if (btnIcon) btnIcon.className = 'fas fa-chevron-up btn-icon';
+          } else {
+            viewAllBtn.classList.remove('expanded');
+            viewAllBtn.setAttribute('aria-expanded', 'false');
+            if (btnText) btnText.textContent = `View All Projects (${allCards.length})`;
+            if (btnIcon) btnIcon.className = 'fas fa-chevron-down btn-icon';
+          }
+        }
+      }
+    }
+
+    viewAllBtn?.addEventListener('click', () => {
+      showAllProjects = !showAllProjects;
+      filterProjects();
+      if (!showAllProjects) {
+        const projSec = document.getElementById('projects');
+        if (projSec) {
+          projSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+
+    // Initial pass to enforce showing the first 8 projects on page load
+    filterProjects();
+
+    /* ============================================================
+       CERT FILTER + MODAL
+    ============================================================ */
+    const certs = [
+      { emoji: '🎓', org: 'Microsoft', title: 'Microsoft Power BI Data Analyst Associate', meta: 'Issued: March 2025 · Microsoft Learn · ID: PL-300-2025-XXXX', bg: '#eef1f6' },
+      { emoji: '📈', org: 'Tableau', title: 'Tableau Desktop Specialist', meta: 'Issued: February 2025 · Tableau · ID: TDS-2025-XXXX', bg: '#eef1f6' },
+      { emoji: '🗄️', org: 'Coursera', title: 'SQL for Data Analysis', meta: 'Issued: January 2025 · Coursera · ID: SQL-DA-2025-XXXX', bg: '#eef1f6' },
+      { emoji: '📋', org: 'Microsoft', title: 'Microsoft Excel Expert Certification', meta: 'Issued: April 2025 · Microsoft · ID: MOS-EXP-2025-XXXX', bg: '#eef1f6' },
+      { emoji: '📊', org: 'Google', title: 'Google Data Analytics Professional Certificate', meta: 'Issued: November 2024 · Coursera · ID: GDA-2024-XXXX', bg: '#eef1f6' },
+      { emoji: '🐍', org: 'Google · Coursera', title: 'Crash Course on Python', meta: 'Issued: 11 August 2026 · Google · Coursera', bg: '#eef1f6' }
+    ];
+    let currentCertIdx = 0, certZoom = 100;
+    function openCertModal(idx) {
+      currentCertIdx = idx; certZoom = 100; const c = certs[idx];
+      document.getElementById('modalDisplay').style.background = c.bg;
+      document.getElementById('modalDisplay').innerHTML = `<div style="font-size:4.5rem;transform:scale(1)">${c.emoji}</div>`;
+      document.getElementById('modalOrg').textContent = c.org;
+      document.getElementById('modalTitle').textContent = c.title;
+      document.getElementById('modalMeta').textContent = c.meta;
+      document.getElementById('zoomLevel').textContent = certZoom + '%';
+      document.getElementById('certModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCertModal() { document.getElementById('certModal').classList.remove('open'); document.body.style.overflow = ''; }
+    function navigateCert(dir) { currentCertIdx = (currentCertIdx + dir + certs.length) % certs.length; openCertModal(currentCertIdx); }
+    function zoomCert(dir) { certZoom = Math.min(Math.max(certZoom + dir * 20, 60), 160); document.getElementById('modalDisplay').querySelector('div').style.transform = `scale(${certZoom / 100})`; document.getElementById('zoomLevel').textContent = certZoom + '%'; }
+    document.getElementById('certModal')?.addEventListener('click', e => { if (e.target === document.getElementById('certModal')) closeCertModal(); });
+    document.addEventListener('keydown', e => { const certModal = document.getElementById('certModal'); if (certModal && e.key === 'Escape') closeCertModal(); if (certModal?.classList.contains('open')) { if (e.key === 'ArrowLeft') navigateCert(-1); if (e.key === 'ArrowRight') navigateCert(1); } });
+    document.querySelectorAll('.filter-btn[data-cert-filter]').forEach(btn => {
+      btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn[data-cert-filter]').forEach(b => b.classList.remove('active')); btn.classList.add('active'); filterCerts(); });
+    });
+    document.getElementById('certSearch')?.addEventListener('input', filterCerts);
+    function filterCerts() {
+      const f = document.querySelector('.filter-btn[data-cert-filter].active').dataset.certFilter;
+      const q = document.getElementById('certSearch').value.toLowerCase();
+      document.querySelectorAll('.cert-card').forEach(card => {
+        const tags = card.dataset.certTags || ''; const title = card.querySelector('.cert-title').textContent.toLowerCase();
+        card.style.display = (f === 'all' || tags.includes(f)) && (!q || title.includes(q) || tags.includes(q)) ? '' : 'none';
+      });
+    }
+
+    /* ============================================================
+       LIVE GITHUB REPOSITORIES
+    ============================================================ */
+    const githubUser = 'vijeelakshmi';
+    const dataAnalystRepos = ['Airport-Flight-Delay-Analysis', 'Real-Estate-Market-Analysis', 'Uber-Analysis', 'Retail-Sales-Dashboard', 'Expense-Tracker-Analysis'];
+    const languageColors = { JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572a5', SQL: '#e34c26', HTML: '#e34c26', CSS: '#563d7c', JupyterNotebook: '#da5b0b', PowerShell: '#012456' };
+    function setGitHubStat(id, value) { const el = document.getElementById(id); if (el) el.textContent = value; }
+    function repoCard(repo) {
+      const card = document.createElement('a'); card.className = 'repo-card'; card.href = repo.html_url; card.target = '_blank'; card.rel = 'noopener'; card.setAttribute('aria-label', `Open ${repo.name} on GitHub`);
+      const name = document.createElement('div'); name.className = 'repo-name'; name.textContent = repo.name;
+      const description = document.createElement('div'); description.className = 'repo-desc'; description.textContent = repo.description || 'No description provided.';
+      const meta = document.createElement('div'); meta.className = 'repo-meta';
+      const language = document.createElement('span'); language.className = 'repo-lang';
+      const dot = document.createElement('span'); dot.className = 'lang-dot'; dot.style.background = languageColors[repo.language] || '#8b949e';
+      language.append(dot, document.createTextNode(repo.language || 'Not specified'));
+      const stars = document.createElement('span'); stars.innerHTML = '<i class="fas fa-star"></i> '; stars.append(document.createTextNode(repo.stargazers_count));
+      const forks = document.createElement('span'); forks.innerHTML = '<i class="fas fa-code-branch"></i> '; forks.append(document.createTextNode(repo.forks_count));
+      meta.append(language, stars, forks); card.append(name, description, meta); return card;
+    }
+    async function loadGitHubRepos() {
+      const reposEl = document.getElementById('githubRepos');
+      try {
+        const [userResponse, reposResponse] = await Promise.all([
+          fetch(`https://api.github.com/users/${githubUser}`),
+          fetch(`https://api.github.com/users/${githubUser}/repos?sort=updated&per_page=100`)
+        ]);
+        if (!userResponse.ok || !reposResponse.ok) throw new Error('GitHub data could not be loaded.');
+        const user = await userResponse.json(), repos = await reposResponse.json();
+        const displayRepos = dataAnalystRepos.map(name => repos.find(repo => repo.name.toLowerCase() === name.toLowerCase())).filter(Boolean);
+        setGitHubStat('ghRepoCount', user.public_repos);
+        setGitHubStat('ghStarCount', repos.reduce((total, repo) => total + repo.stargazers_count, 0));
+        setGitHubStat('ghFollowerCount', user.followers);
+        setGitHubStat('ghForkCount', repos.reduce((total, repo) => total + repo.forks_count, 0));
+        reposEl.replaceChildren(...displayRepos.map(repoCard));
+      } catch (error) {
+        reposEl.innerHTML = '<div class="repo-card"><div class="repo-desc">Unable to load repositories right now. Please visit the GitHub profile instead.</div></div>';
+      }
+    }
+    loadGitHubRepos();
+
+    /* ============================================================
+       SUBTLE LIFT ON PROJECT CARDS (replaces heavy 3D tilt)
+    ============================================================ */
+    /* handled purely via CSS :hover on .project-card for a calmer effect */
+
+    /* ============================================================
+       CONTACT FORM
+    ============================================================ */
+    const contactForm = document.getElementById('contactForm');
+    contactForm?.addEventListener('submit', async event => {
+      event.preventDefault();
+      const submitButton = document.getElementById('formSubmit'), success = document.getElementById('formSuccess'), error = document.getElementById('formError');
+      submitButton.disabled = true; submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…'; success.style.display = 'none'; error.style.display = 'none';
+      try {
+        const response = await fetch(contactForm.action, { method: 'POST', body: new FormData(contactForm), headers: { Accept: 'application/json' } });
+        if (!response.ok) throw new Error('Submission failed');
+        contactForm.reset(); success.style.display = 'block';
+      } catch (err) {
+        error.textContent = 'Sorry, your message could not be sent. Please try again or email me directly.'; error.style.display = 'block';
+      } finally {
+        submitButton.disabled = false; submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      }
+    });
+
+    /* ============================================================
+       SMOOTH SCROLL
+    ============================================================ */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => { const t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } });
+    });
+  </script>
+</body>
+
+</html>
